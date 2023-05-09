@@ -1,0 +1,18 @@
+/* Styles for small screens */
+@media only screen and (max-width: 768px) {
+  .search-container {
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+.search-input {
+  display: none;
+}
