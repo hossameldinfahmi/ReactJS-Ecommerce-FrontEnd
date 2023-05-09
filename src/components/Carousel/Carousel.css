@@ -1,0 +1,57 @@
+.carousel-slide {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+/* Default font size and padding */
+#default-carousel {
+  font-size: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Styles for small screens */
+@media only screen and (max-width: 768px) {
+  #default-carousel {
+    font-size: 14px;
+
+    padding-bottom: 10px;
+  }
+
+  /* Update the font size of the text elements inside the carousel */
+  #default-carousel p,
+  #default-carousel h2,
+  #default-carousel button {
+    font-size: 1rem; /* or any other size that works for you */
+  }
+}
+
+/* Default button and icon styles */
+#default-carousel button,
+#default-carousel svg {
+  font-size: 1rem;
+}
+
+/* Styles for small screens */
+@media only screen and (max-width: 768px) {
+  /* Reduce the font size and padding of the buttons */
+  #default-carousel button {
+    font-size: 0.8rem;
+    margin: 0.5rem 1rem;
+  }
+
+  /* Reduce the size of the carousel buttons */
+  #default-carousel [data-carousel-slide-to] {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Add padding to the top and bottom of the carousel */
+  #default-carousel {
+    margin-bottom: 1rem;
+    padding: 3rem 0;
+  }
+}
