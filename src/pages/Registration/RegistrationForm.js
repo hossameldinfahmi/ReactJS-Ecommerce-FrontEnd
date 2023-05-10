@@ -1,9 +1,10 @@
 import React from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import "./RegistrationForm.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
+import "./RegistrationForm.css";
 
 const initialValues = {
   email: "",
@@ -12,8 +13,7 @@ const initialValues = {
   confirm_password: "",
   phone: "",
   date_of_birth: "",
-  //   addresses: [],
-  profileImage: null,
+  image: null,
 };
 
 const validate = (values) => {
@@ -39,29 +39,19 @@ const validate = (values) => {
     errors.password = "Password must be at least 8 characters long";
   }
 
-  if (values.profileImage && values.profileImage.size > 1000000) {
-    errors.profileImage = "File size must be less than 1MB";
+  if (!values.image) {
+    errors.image = "Required";
+  } else if (values.image.size > 1000000) {
+    errors.image = "Image size cannot exceed 1MB";
   }
 
-  if (!/^\d+$/.test(values.phone)) {
-    errors.phone = "Phone number must contain only numbers";
+  if (values.image && values.image.size > 1000000) {
+    errors.image = "File size must be less than 1MB";
   }
 
-  //   if (!values.date_of_birth) {
-  //     errors.date_of_birth = "Required";
-  //   } else {
-  //     const dob = new Date(values.date_of_birth);
-  //     const now = new Date();
-  //     const minDob = new Date("2010-01-01");
-  //     if (dob < now) {
-  //       errors.date_of_birth = "Date of birth cannot be in the future";
-  //     } else if (dob < minDob) {
-  //       errors.date_of_birth = "Date of birth must before after 2010";
-  //     } else {
-  //       errors.date_of_birth = "";
-  //     }
-  //   }
-
+  if (!/^[0][0-9]{10}$/.test(values.phone)) {
+    errors.phone = "Phone number must start with 0 and have 11 digits";
+  }
   if (values.confirm_password !== values.password) {
     errors.confirm_password = "Passwords do not match";
   }
@@ -69,14 +59,29 @@ const validate = (values) => {
   return errors;
 };
 
-const onSubmit = async (values, { setSubmitting }) => {
+const onSubmit = async (values, { setSubmitting, resetForm }) => {
   try {
+    let formData = new FormData();
+    formData.append("username", values.username);
+    formData.append("password", values.password);
+    formData.append("confirm_password", values.confirm_password);
+    formData.append("email", values.email);
+    formData.append("phone", values.phone);
+    formData.append("date_of_birth", values.date_of_birth);
+    formData.append("image", values.image);
+
+    console.log(formData.get("email"));
+    console.log(formData.get("phone"));
+    console.log(formData.get("date_of_birth"));
+    console.log(formData.get("image"));
+    console.log(formData.get("username"));
     const response = await axios.post(
       "http://localhost:8000/auth/register/",
-      values
+      formData
     );
 
     if (response.status === 201) {
+      resetForm();
       toast.success("Form submitted successfully!", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -123,7 +128,7 @@ const RegistrationForm = () => (
     onSubmit={onSubmit}
     validateOnChange={true}
   >
-    {({ isSubmitting, setFieldValue }) => (
+    {({ isSubmitting, setFieldValue, isValid }) => (
       <Form className="my-16 max-w-xl mx-auto bg-white p-8 border-t-4 border-green-500 rounded-lg shadow-lg">
         <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-1xl lg:text-3xl dark:text-dark my-8">
           Registration
@@ -257,96 +262,19 @@ const RegistrationForm = () => (
           />
         </div>
 
-        {/* <div className="mb-4">
-          <label
-            htmlFor="street"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Street
-          </label>
-          <Field
-            type="text"
-            name="street"
-            className="w-full border border-gray-400 p-2 rounded-lg"
-          />
-          <ErrorMessage
-            name="street"
-            component="div"
-            className="text-red-500 text-sm mt-2"
-          />
-        </div>
-
-        <div className="flex flex-row mb-4">
-          <div className="w-1/2 mr-4">
-            <label
-              htmlFor="city"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              City
-            </label>
-            <Field
-              type="text"
-              name="city"
-              className="w-full border border-gray-400 p-2 rounded-lg"
-            />
-            <ErrorMessage
-              name="city"
-              component="div"
-              className="text-red-500 text-sm mt-2"
-            />
-          </div>
-
-          <div className="w-1/2">
-            <label
-              htmlFor="state"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              State
-            </label>
-            <Field
-              type="text"
-              name="state"
-              className="w-full border border-gray-400 p-2 rounded-lg"
-            />
-            <ErrorMessage
-              name="state"
-              component="div"
-              className="text-red-500 text-sm mt-2"
-            />
-          </div>
-        </div>
-
         <div className="mb-4">
-          <label htmlFor="zip" className="block text-gray-700 font-bold mb-2">
-            Zip
-          </label>
-          <Field
-            type="text"
-            name="zip"
-            className="w-full border border-gray-400 p-2 rounded-lg"
-          />
-          <ErrorMessage
-            name="zip"
-            component="div"
-            className="text-red-500 text-sm mt-2"
-          />
-        </div> */}
-        <div className="mb-4">
-          <label
-            htmlFor="profileImage"
-            className="block text-gray-700 font-bold mb-2"
-          >
+          <label htmlFor="image" className="block text-gray-700 font-bold mb-2">
             Profile Image
           </label>
           <input
             type="file"
-            name="profileImage"
+            name="x"
             onChange={(e) => {
-              setFieldValue("profileImage", e.currentTarget.files[0]);
+              setFieldValue("image", e.currentTarget.files[0]);
             }}
           />
           <ErrorMessage
-            name="profileImage"
+            name="image"
             component="div"
             className="text-red-500 text-sm mt-2"
           />
@@ -356,7 +284,7 @@ const RegistrationForm = () => (
           <button
             type="submit"
             className="bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isValid}
           >
             Submit
           </button>
