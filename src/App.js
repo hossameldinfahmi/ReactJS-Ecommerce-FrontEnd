@@ -17,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/' exact component={<Home />} />
           <Route path='/products'  element={<Products/>} />
+          <Route path='/product/:id'>  </Route>
         </Routes>
       <Footer />
 
