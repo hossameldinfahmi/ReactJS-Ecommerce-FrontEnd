@@ -1,4 +1,7 @@
 import React from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
 
@@ -9,7 +12,7 @@ const initialValues = {
   confirm_password: "",
   phone: "",
   date_of_birth: "",
-  addresses: "",
+  //   addresses: [],
   profileImage: null,
 };
 
@@ -63,30 +66,54 @@ const validate = (values) => {
     errors.confirm_password = "Passwords do not match";
   }
 
-  console.log(initialValues.profileImage);
   return errors;
 };
 
 const onSubmit = async (values, { setSubmitting }) => {
   try {
-    // Send the form data to the backend API
     const response = await axios.post(
       "http://localhost:8000/auth/register/",
       values
     );
 
-    // Handle the response from the backend API
     if (response.status === 201) {
-      alert("Form submitted successfully!");
+      toast.success("Form submitted successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } else {
-      alert("Failed to submit the form, please try again later.");
+      toast.error("Failed to submit the form, please try again later.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   } catch (error) {
-    console.error(error);
-    alert("An error occurred while submitting the form.");
-  }
+    if (error.response && error.response.data) {
+      const { data } = error.response;
 
-  setSubmitting(false);
+      if (typeof data === "string") {
+        toast.error(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      } else if (typeof data === "object") {
+        const errorMessages = Object.values(data).flat();
+
+        errorMessages.forEach((errorMessage) => {
+          toast.error(errorMessage, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        });
+      } else {
+        toast.error("An error occurred while submitting the form.", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } else {
+      toast.error("An error occurred while submitting the form.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  } finally {
+    setSubmitting(false);
+  }
 };
 
 const RegistrationForm = () => (
@@ -97,7 +124,11 @@ const RegistrationForm = () => (
     validateOnChange={true}
   >
     {({ isSubmitting, setFieldValue }) => (
-      <Form className="max-w-xl mx-auto bg-white p-8 border-t-4 border-green-500 rounded-lg shadow-lg">
+      <Form className="my-16 max-w-xl mx-auto bg-white p-8 border-t-4 border-green-500 rounded-lg shadow-lg">
+        <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-1xl lg:text-3xl dark:text-dark my-8">
+          Registration
+        </h1>
+
         <div className="flex flex-row mb-4">
           <div className="w-1/2 mr-4">
             <label
@@ -226,23 +257,80 @@ const RegistrationForm = () => (
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label
-            htmlFor="addresses"
+            htmlFor="street"
             className="block text-gray-700 font-bold mb-2"
           >
-            Addresses
+            Street
           </label>
           <Field
-            component="textarea"
-            name="addresses"
+            type="text"
+            name="street"
             className="w-full border border-gray-400 p-2 rounded-lg"
-            onBlur={(e) => {
-              e.target.value = e.target.value.trim();
-            }}
+          />
+          <ErrorMessage
+            name="street"
+            component="div"
+            className="text-red-500 text-sm mt-2"
           />
         </div>
 
+        <div className="flex flex-row mb-4">
+          <div className="w-1/2 mr-4">
+            <label
+              htmlFor="city"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              City
+            </label>
+            <Field
+              type="text"
+              name="city"
+              className="w-full border border-gray-400 p-2 rounded-lg"
+            />
+            <ErrorMessage
+              name="city"
+              component="div"
+              className="text-red-500 text-sm mt-2"
+            />
+          </div>
+
+          <div className="w-1/2">
+            <label
+              htmlFor="state"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              State
+            </label>
+            <Field
+              type="text"
+              name="state"
+              className="w-full border border-gray-400 p-2 rounded-lg"
+            />
+            <ErrorMessage
+              name="state"
+              component="div"
+              className="text-red-500 text-sm mt-2"
+            />
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="zip" className="block text-gray-700 font-bold mb-2">
+            Zip
+          </label>
+          <Field
+            type="text"
+            name="zip"
+            className="w-full border border-gray-400 p-2 rounded-lg"
+          />
+          <ErrorMessage
+            name="zip"
+            component="div"
+            className="text-red-500 text-sm mt-2"
+          />
+        </div> */}
         <div className="mb-4">
           <label
             htmlFor="profileImage"
