@@ -27,7 +27,7 @@ const SITEMAP = [
 const currentYear = new Date().getFullYear();
 function Footer() {
   return (
-    <footer className="relative w-full ">
+    <footer className="relative w-full border-t border-solid border-1 border-gray-300">
       <div className="mx-auto w-full max-w-7xl px-8">
         <div className="mx-auto grid w-full grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
           {SITEMAP.map(({ title, links }, key) => (
