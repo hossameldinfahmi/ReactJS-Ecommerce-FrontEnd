@@ -10,12 +10,12 @@ import RegistrationForm from "./pages/Registration/RegistrationForm";
 import { fetchProducts } from "./store/products/products-actions";
 
 import { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
+  console.log("first")
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
 
   useEffect(()=>{
     dispatch(fetchProducts())
