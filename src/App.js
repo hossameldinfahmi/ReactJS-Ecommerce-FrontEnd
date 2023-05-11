@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavbarMenu/NavbarMenu";
 import Products from "./pages/Products/Products";
+import SingleProduct from "./pages/singleProduct/SingleProduct";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RegistrationForm from "./pages/Registration/RegistrationForm";
 
@@ -20,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/product/:id"> </Route>
+          <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/registration" element={<RegistrationForm />} />
         </Routes>
         

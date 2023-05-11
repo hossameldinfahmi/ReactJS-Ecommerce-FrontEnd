@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 const Products = () => {
 
     const dispatch = useDispatch();
+    
     useEffect(()=>{
       dispatch(fetchProducts())
     },[dispatch])
