@@ -71,7 +71,7 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
     formData.append("image", values.image);
 
     const response = await axios.post(
-      "http://localhost:8000/auth/register/",
+      `${process.env.REACT_APP_BASE_API_URL}/auth/register/`,
       formData
     );
 

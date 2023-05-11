@@ -59,7 +59,7 @@ const ProductCard = () => {
             title="Buy Now"
             href="/."
             target="_blank"
-            className="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12"
+            className="p-2 block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12"
           >
             <img
               className="object-cover object-center w-full rounded-full"
