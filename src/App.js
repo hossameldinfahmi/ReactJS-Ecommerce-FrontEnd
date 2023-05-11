@@ -7,8 +7,20 @@ import NavBar from "./components/NavbarMenu/NavbarMenu";
 import Products from "./pages/Products/Products";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RegistrationForm from "./pages/Registration/RegistrationForm";
+import { fetchProducts } from "./store/products/products-actions";
+
+import { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+
 
 function App() {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
+
+  useEffect(()=>{
+    dispatch(fetchProducts())
+  },[dispatch])
+
   return (
     <>
       <ToastContainer />
