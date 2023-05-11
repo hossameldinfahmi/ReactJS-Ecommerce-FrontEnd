@@ -20,6 +20,7 @@ export const fetchProducts = () => {
             dispatch(
                 productActions.replaceProducts({
                     items: productsData.results || [],
+                    isLoading: false,
                 })
             )
         }catch (error){

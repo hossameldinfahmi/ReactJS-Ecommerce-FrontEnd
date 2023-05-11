@@ -70,13 +70,8 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
     formData.append("date_of_birth", values.date_of_birth);
     formData.append("image", values.image);
 
-    console.log(formData.get("email"));
-    console.log(formData.get("phone"));
-    console.log(formData.get("date_of_birth"));
-    console.log(formData.get("image"));
-    console.log(formData.get("username"));
     const response = await axios.post(
-      "http://localhost:8000/auth/register/",
+      `${process.env.REACT_APP_BASE_API_URL}/auth/register/`,
       formData
     );
 
@@ -273,6 +268,7 @@ const RegistrationForm = () => (
               setFieldValue("image", e.currentTarget.files[0]);
             }}
           />
+
           <ErrorMessage
             name="image"
             component="div"

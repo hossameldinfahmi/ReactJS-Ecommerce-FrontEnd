@@ -9,18 +9,18 @@ import Cart from "./pages/Cart/Cart";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RegistrationForm from "./pages/Registration/RegistrationForm";
 import { fetchProducts } from "./store/products/products-actions";
-
+import Login from "./pages/Login/Login";
 import { useEffect } from "react";
-import { useDispatch } from 'react-redux';
-
+import { useDispatch } from "react-redux";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 function App() {
-  console.log("first")
+  console.log("first");
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(fetchProducts())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <>
@@ -34,8 +34,10 @@ function App() {
           <Route path="/product/:id"> </Route>
           <Route path="/registration" element={<RegistrationForm />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/user/profile" element={<UserProfile />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
-        
+
         <Footer />
       </Router>
     </>
