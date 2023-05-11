@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavbarMenu/NavbarMenu";
 import Products from "./pages/Products/Products";
+import Cart from "./pages/Cart/Cart";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RegistrationForm from "./pages/Registration/RegistrationForm";
 import { fetchProducts } from "./store/products/products-actions";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id"> </Route>
           <Route path="/registration" element={<RegistrationForm />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         
         <Footer />
