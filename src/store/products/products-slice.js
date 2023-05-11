@@ -4,10 +4,12 @@ const productSlice = createSlice({
     name : "products",
     initialState:{
         items: [],
+        isLoading: true
     },
     reducers:{
         replaceProducts(state, action){
             state.items = action.payload.items;
+            state.isLoading = action.payload.isLoading;
         }
     }
 })
