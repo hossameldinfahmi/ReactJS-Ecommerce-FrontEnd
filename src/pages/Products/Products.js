@@ -5,6 +5,7 @@ import Product from "../../components/Product/Product";
 
 const Products = () => {
     const products = useSelector((state)=> state.products.items)
+    console.log(products)
 
     return(
     <Fragment>
@@ -12,8 +13,8 @@ const Products = () => {
                 {
                     products.map((oneProduct)=>{
                         return ( 
-                            <Card>
-                                    <Product key={oneProduct.id} {...oneProduct}/>
+                            <Card key={oneProduct.id}>
+                                    <Product {...oneProduct}/>
                             </Card> 
                     )})
                 }
