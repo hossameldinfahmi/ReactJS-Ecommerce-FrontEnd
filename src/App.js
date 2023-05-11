@@ -12,10 +12,10 @@ import RegistrationForm from "./pages/Registration/RegistrationForm";
 function App() {
   return (
     <>
+          <ToastContainer />
       <Router>
         <NavBar />
         <Routes>
-          <ToastContainer />
 
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
