@@ -50,13 +50,25 @@ function ChangeEmailForm() {
       toast.success("Email Changed Succsesuflly", {
         position: toast.POSITION.TOP_RIGHT,
       });
+      toast.error(response.email, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       handleLogout();
 
       navigate("/login");
     } catch (error) {
-      toast.error(error, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      if (error.response) {
+        const { data } = error.response;
+        if (data.email) {
+          toast.error(data.email[0], {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      } else {
+        toast.error("Something went wrong", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     }
     setSubmitting(false);
   };
