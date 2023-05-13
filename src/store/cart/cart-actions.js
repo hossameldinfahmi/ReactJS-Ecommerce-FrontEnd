@@ -1,12 +1,15 @@
 import { cartActions } from "./cart-slice";
 import { asycnWrapper } from "../../utils/libs";
+import jwtDecode from 'jwt-decode';
 
 const accessToken = localStorage.getItem('token');
+const decodedToken = jwtDecode(accessToken);
+
 export const fetchCartItems = () => {
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch(
-                `${process.env.REACT_APP_BASE_API_URL}/cart/cart/27`,
+                `${process.env.REACT_APP_BASE_API_URL}/cart/cart/${decodedToken.user_id}`,
                 {
                     headers:{
                         Authorization:`Bearer ${accessToken}`

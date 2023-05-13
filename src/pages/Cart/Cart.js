@@ -2,19 +2,27 @@ import React, { Fragment, useEffect } from "react";
 import CartItems from "../../components/CartItems/CartItems";
 import { useDispatch } from "react-redux";
 import { fetchCartItems } from "../../store/cart/cart-actions";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CheckOut from "../../components/Checkout/Checkout";
 
 const Cart = () => {
 
     const cartItems = useSelector(state => state.cart.items);
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
     let orderTotal = 0;
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     useEffect(() => {
-        dispatch(fetchCartItems());
-    }, [dispatch])
+        if (!isLoggedIn) {
+            navigate("/login");
+        }
+        else{
+            dispatch(fetchCartItems());
+        }
+    }, [dispatch,isLoggedIn, navigate])
 
     return (
         <Fragment>
