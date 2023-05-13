@@ -6,10 +6,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { fetchUserData } from "../../store/authSlice/login";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(fetchUserData());
+  }, [dispatch]);
 
   const initialValues = {
     email: "",
@@ -17,7 +23,6 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (values, { setSubmitting }) => {
-    console.log(values);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BASE_API_URL}/auth/login/`,
