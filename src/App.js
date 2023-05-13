@@ -15,7 +15,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import UserProfile from "./pages/UserProfile/UserProfile";
 
-
 function App() {
   console.log("first");
   const dispatch = useDispatch();
