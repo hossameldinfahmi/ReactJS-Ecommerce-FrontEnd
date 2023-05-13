@@ -1,33 +1,64 @@
-import React, { Fragment } from "react";
-import Cart from "../../components/Cart/Cart";
+import React, { Fragment, useEffect } from "react";
+import CartItems from "../../components/CartItems/CartItems";
+import { useDispatch } from "react-redux";
+import { fetchCartItems } from "../../store/cart/cart-actions";
+import { useSelector } from "react-redux";
+import CheckOut from "../../components/Checkout/Checkout";
 
-const Products = () => {
+const Cart = () => {
+
+    const cartItems = useSelector(state => state.cart.items);
+    let orderTotal = 0;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCartItems());
+    }, [dispatch])
 
     return (
         <Fragment>
-            <div className=" container mx-auto ">
-                <div className="flex justify-between">
-                    <Cart />
-                    <div className=" container m-10">
-                        <h1 className="font-bold">Order Summary</h1>
-                        <div class="flex  justify-between p-3 border-b-2 border-gray-300 m-3">
-                            <p class="inline-block mr-4">Hashem</p>
-                            <span class="inline-block mr-4">Hashem</span>
-                        </div>
-                        <div class="flex  justify-between p-3 border-b-2 border-gray-300 m-3">
-                            <p class="inline-block mr-4">Hashem</p>
-                            <span class="inline-block mr-4">Hashem</span>
-                        </div>
-                        <div class="flex  justify-between p-3 border-b-2 border-gray-300 m-3">
-                            <p class="inline-block mr-4">Hashem</p>
-                            <span class="inline-block mr-4">Hashem</span>
-                        </div>
-                        
-                    </div>
+
+            <div className=" container mx-auto py-16 lg:pb-28 lg:pt-20 ">
+                <div class="mb-5 sm:mb-15 ">
+                    <h2 class="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">Shopping Cart</h2>
                 </div>
+                {cartItems.length &&<div className="flex justify-between">
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg" style={{ width: "90%" }}>
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3">
+                                        Image
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Product
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Qty
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Price
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cartItems.map((item) => {
+
+                                    orderTotal += item.product.price * item.quantity
+                                    return (<CartItems key={item.id} item={item} />)
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                    <CheckOut orderTotal={orderTotal} />
+                </div>}
             </div>
         </Fragment>
     )
 }
 
-export default Products;
+export default Cart;
