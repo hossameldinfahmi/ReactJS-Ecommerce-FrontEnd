@@ -6,7 +6,6 @@ import PartnarsCards from "../../components/Static/PartnarsCards/PartnarsCards";
 import BannarSection from "../../components/Static/BannarSection/BannarSection";
 import SlideCards from "../../components/Static/SlideCards/SlideCards";
 import ProductCard from "../../components/Static/ProductCard/ProductCard";
-import UserProfile from "../../pages/UserProfile/UserProfile";
 
 const Home = () => {
   return (
@@ -19,8 +18,6 @@ const Home = () => {
 
       <ProductCard />
       <PartnarsCards />
-
-      <UserProfile />
     </Fragment>
   );
 };
