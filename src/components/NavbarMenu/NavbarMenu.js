@@ -30,8 +30,6 @@ export default function NavBar() {
   const { user } = useSelector((state) => state.auth);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  console.log(isLoggedIn);
-
   useEffect(() => {
     dispatch(fetchUserData());
   }, [dispatch, isLoggedIn]);
@@ -130,7 +128,7 @@ export default function NavBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            to="/user/profile" // Use the Link component to navigate to /user/profile
+                            to="/user/profile"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"

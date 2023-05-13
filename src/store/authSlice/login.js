@@ -6,7 +6,6 @@ const initialState = {
   user: null,
 };
 
-console.log(initialState);
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -27,7 +26,6 @@ export const { login, logout, setUserData } = authSlice.actions;
 
 export const fetchUserData = () => async (dispatch, getState) => {
   const token = localStorage.getItem("token");
-  console.log(token);
 
   try {
     const response = await axios.get(
