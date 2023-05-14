@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import MyOrders from "./pages/MyOrders/MyOrders";
+import WishList from "./pages/WishList/WishList";
 
 function App() {
   console.log("first");
@@ -40,6 +41,7 @@ function App() {
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/login" element={<Login />} />
           <Route path="myorders" element={<MyOrders />} />
+          <Route path="wishlist" element={<WishList />} />
         </Routes>
 
         <Footer />
