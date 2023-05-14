@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import axios from "axios";
+
 import {
   Tabs,
   TabsHeader,
@@ -20,6 +22,9 @@ function UserProfile() {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const [userData, setUserData] = useState({});
+
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
@@ -28,15 +33,23 @@ function UserProfile() {
 
   useEffect(() => {
     const response = async () => {
-      const res = await fetch(
-        `${process.env.REACT_APP_BASE_API_URL}/auth/profile`
-      );
-      const resJson = await res.json();
-
-      console.log(`fetch data ${JSON.stringify(resJson)}`);
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_API_URL}/auth/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserData(response.data);
+        console.log(`respone ${response.data}`);
+      } catch (error) {
+        console.error(error);
+      }
     };
     response();
-  }, [dispatch]);
+  }, []);
 
   console.log(`Tis is user Data ${JSON.stringify(user)}`);
   return (
@@ -57,17 +70,21 @@ function UserProfile() {
         </div>
         <div className="md:ml-8 mt-8 md:mt-0 text-center md:text-left border-b ">
           <h1 className="text-4xl font-medium text-gray-700">
-            Name : {user?.username}
+            Name : {userData?.username}
           </h1>
           <p className="font-light text-gray-600 mt-3">
-            Date Of Birth : {user?.date_of_birth}
+            Date Of Birth : {userData?.date_of_birth}
           </p>
-          <p className="mt-8 text-gray-500">Email: {user?.email}</p>
-          <p className="mt-2 text-gray-500">Phone: {user?.phone}</p>
-          {/* <p className="mt-2 text-gray-500">
-            Address: {user?.addresses[0].country}, {user?.addresses[0].city},{" "}
-            {user?.addresses[0].street}, {user?.addresses[0].building_number}
-          </p> */}
+          <p className="mt-8 text-gray-500">Email: {userData?.email}</p>
+          <p className="mt-2 text-gray-500">Phone: {userData?.phone}</p>
+          {userData && userData.addresses && (
+            <p className="mt-2 text-gray-500">
+              Address: {userData.addresses[0]?.country || " "} ,
+              {userData.addresses[0]?.city || ""} ,
+              {userData.addresses[0]?.street || ""} ,
+              {userData.addresses[0]?.building_number || ""}
+            </p>
+          )}
         </div>
       </div>
       <div className="mt-12 flex flex-col justify-center">
