@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import axios from "axios";
+
 import {
   Tabs,
   TabsHeader,
@@ -12,18 +14,44 @@ import {
 import ChangePasswordForm from "../../components/ChangePassword/ChangePassword";
 import ChangeEmailForm from "../../components/ChangeEmail/ChangeEmail";
 import ChangeAddressForm from "../../components/ChangeAddress/ChangeAddress";
+import { fetchUserData } from "../../store/authSlice/login";
+import { useDispatch } from "react-redux";
 
 function UserProfile() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const [userData, setUserData] = useState({});
+
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
     }
   }, [isLoggedIn, navigate]);
 
-  console.log(user);
+  useEffect(() => {
+    const response = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_API_URL}/auth/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserData(response.data);
+        console.log(`respone ${response.data}`);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    response();
+  }, []);
+
+  console.log(`Tis is user Data ${JSON.stringify(user)}`);
   return (
     <div className="p-16">
       <div className="p-8 bg-gray-100 rounded-full shadow-md mt-24 flex flex-col md:flex-row items-center">
@@ -42,17 +70,21 @@ function UserProfile() {
         </div>
         <div className="md:ml-8 mt-8 md:mt-0 text-center md:text-left border-b ">
           <h1 className="text-4xl font-medium text-gray-700">
-            Name : {user?.username}
+            Name : {userData?.username}
           </h1>
           <p className="font-light text-gray-600 mt-3">
-            Date Of Birth : {user?.date_of_birth}
+            Date Of Birth : {userData?.date_of_birth}
           </p>
-          <p className="mt-8 text-gray-500">Email: {user?.email}</p>
-          <p className="mt-2 text-gray-500">Phone: {user?.phone}</p>
-          <p className="mt-2 text-gray-500">
-            Address: {user?.addresses[0].country}, {user?.addresses[0].city},{" "}
-            {user?.addresses[0].street}, {user?.addresses[0].building_number}
-          </p>
+          <p className="mt-8 text-gray-500">Email: {userData?.email}</p>
+          <p className="mt-2 text-gray-500">Phone: {userData?.phone}</p>
+          {userData && userData.addresses && (
+            <p className="mt-2 text-gray-500">
+              Address: {userData.addresses[0]?.country || " "} ,
+              {userData.addresses[0]?.city || ""} ,
+              {userData.addresses[0]?.street || ""} ,
+              {userData.addresses[0]?.building_number || ""}
+            </p>
+          )}
         </div>
       </div>
       <div className="mt-12 flex flex-col justify-center">

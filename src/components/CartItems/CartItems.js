@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteCartItem,updateQuantityItem } from "../../store/cart/cart-actions";
+import { deleteCartItem, updateQuantityItem } from "../../store/cart/cart-actions";
 
 
 const CartItems = (props) => {
