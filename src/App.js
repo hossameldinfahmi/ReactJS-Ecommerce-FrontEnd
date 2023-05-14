@@ -10,20 +10,11 @@ import SingleProduct from "./pages/singleProduct/SingleProduct";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RegistrationForm from "./pages/Registration/RegistrationForm";
 
-import { fetchProducts } from "./store/products/products-actions";
 import Login from "./pages/Login/Login";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import MyOrders from "./pages/MyOrders/MyOrders";
 
 function App() {
-  console.log("first");
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
 
   return (
     <>
