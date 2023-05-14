@@ -13,7 +13,6 @@ function ChangeAddressForm() {
   const initialValues = {
     password: "",
     confirmPassword: "",
-    email: "",
     city: "",
     country: "",
     street: "",
@@ -27,7 +26,6 @@ function ChangeAddressForm() {
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Required"),
-    email: Yup.string().email("Invalid email address").required("Required"),
     city: Yup.string().required("Required"),
     country: Yup.string().required("Required"),
     street: Yup.string().required("Required"),
@@ -44,13 +42,16 @@ function ChangeAddressForm() {
       const response = await axios.patch(
         `${process.env.REACT_APP_BASE_API_URL}/auth/`,
         {
-          email: values.email,
           password: values.password,
           confirm_password: values.confirmPassword,
-          city: values.city,
-          country: values.country,
-          street: values.street,
-          building_number: values.building_number,
+          addresses: [
+            {
+              city: values.city,
+              country: values.country,
+              street: values.street,
+              building_number: values.building_number,
+            },
+          ],
         },
         {
           headers: {
@@ -59,8 +60,8 @@ function ChangeAddressForm() {
         }
       );
       console.log(response);
-      console.log(values);
-      toast.success("Password Changed Succsesuflly", {
+
+      toast.success("Address Changed Succsesuflly", {
         position: toast.POSITION.TOP_RIGHT,
       });
       handleLogout();
@@ -81,7 +82,7 @@ function ChangeAddressForm() {
     >
       {(formik) => (
         <Form>
-          <h2 className="text-4xl font-extrabold my-6">Change Email</h2>
+          <h2 className="text-4xl font-extrabold my-6">Change Address</h2>
 
           <div className="mb-4">
             <label htmlFor="password">Password</label>
@@ -111,20 +112,7 @@ function ChangeAddressForm() {
               className="text-red-500"
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="email">Email</label>
-            <Field
-              type="email"
-              id="email"
-              name="email"
-              className="block w-full p-2 border rounded-md"
-            />
-            <ErrorMessage
-              name="email"
-              component="div"
-              className="text-red-500"
-            />
-          </div>
+
           <div className="mb-4">
             <label htmlFor="city">City</label>
             <Field

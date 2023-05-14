@@ -12,6 +12,7 @@ import RegistrationForm from "./pages/Registration/RegistrationForm";
 
 import Login from "./pages/Login/Login";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="myorders" element={<MyOrders />} />
         </Routes>
 
         <Footer />
