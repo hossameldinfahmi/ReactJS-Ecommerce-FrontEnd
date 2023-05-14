@@ -10,21 +10,12 @@ import SingleProduct from "./pages/singleProduct/SingleProduct";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RegistrationForm from "./pages/Registration/RegistrationForm";
 
-import { fetchProducts } from "./store/products/products-actions";
 import Login from "./pages/Login/Login";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import WishList from "./pages/WishList/WishList";
 
 function App() {
-  console.log("first");
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
 
   return (
     <>
@@ -40,7 +31,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/login" element={<Login />} />
-          <Route path="myorders" element={<MyOrders />} />
+          <Route path="/orders" element={<MyOrders />} />
           <Route path="wishlist" element={<WishList />} />
         </Routes>
 

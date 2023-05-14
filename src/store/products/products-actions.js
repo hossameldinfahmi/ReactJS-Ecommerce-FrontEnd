@@ -1,10 +1,11 @@
 import { productActions } from "./products-slice";
 
-export const fetchProducts = () => {
+export const fetchProducts = (url) => {
   return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_API_URL}/products/`
+        // `${process.env.REACT_APP_BASE_API_URL}/products/`
+        url
       );
 
       if (!response.ok) {
@@ -21,6 +22,8 @@ export const fetchProducts = () => {
         productActions.replaceProducts({
           items: productsData.results || [],
           isLoading: false,
+          next: productsData.next,
+          previous: productsData.previous
         })
       );
     } catch (error) {
