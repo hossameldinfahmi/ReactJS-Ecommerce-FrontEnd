@@ -16,6 +16,22 @@ const cartSlice = createSlice({
         updateQuantity(state,action) {
             const item = state.items.find(item => item.product.id===action.payload.id);
             item.quantity=action.payload.quantity;
+        },
+        addTocart(state,action){
+            const product = action.payload.product;
+            const quantity = action.payload.quantity;
+            const id = action.payload.id;
+            const item = state.items.find(item=>item.id===id)
+            if(item){
+                item.quantity=quantity;
+            }
+            else{
+                state.items.push({
+                    id,
+                    product,
+                    quantity
+                })
+            }
         }
     }
 })
