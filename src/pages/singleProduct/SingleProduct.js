@@ -1,32 +1,53 @@
-import React from "react";
+import React ,{useState, useEffect, useCallback} from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-// import do
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SingleProduct = () =>{
 
-    const {id} = useParams();
-    console.log(`id ${id}`)
+    let [loading, setLoading] = useState(true);
+    const [oneProduct, setOneProduct] = useState();
+    const { id } = useParams();
     
-    const products = useSelector((state)=> state.products.items)
-    console.log(`prod ${products}`)
-    const oneProduct = products.find((product)=> product.id === parseInt(id))
-    console.log(oneProduct)
-    const url = process.env.REACT_APP_IMAGE_BASE_URL
-    console.log(typeof url)
+    const imageUrl = process.env.REACT_APP_IMGE_API_URL
+    const fetchUrl = `${process.env.REACT_APP_BASE_API_URL}/products/${id}`
+
+    const fetchData = useCallback(async()=>{
+
+        const res = await fetch(fetchUrl);
+        const resJson = await res.json();
+
+        if(resJson){
+            setOneProduct(resJson)
+            setLoading(false)
+        }else{
+            setLoading(true)
+        }
+    },[fetchUrl])
+
+    useEffect(()=>{
+        fetchData();
+    },[fetchData])
 
 return (
     <>
-        <div> 
-            <img src={`${url}${oneProduct.image}`} alt="product"></img>
-        </div>
-        <h3>{oneProduct.name}</h3>
-        <h3>{oneProduct.description}</h3>
-        <h3>{oneProduct.category.name}</h3>
-        <h3>{parseFloat(oneProduct.price)}</h3>
+        {
+            loading ? (
+                <ClipLoader color={"#000000"} loading={loading} size={75} 
+                aria-label="Loading Spinner" data-testid="loader"/>
+            ):(
+                <>
+                    <div> 
+                        <img src={`${imageUrl}${oneProduct.image}`} alt="product"></img>
+                    </div>
+                    <h3>{oneProduct.name}</h3>
+                    <h3>{oneProduct.description}</h3>
+                    <h3>{oneProduct.category.name}</h3>
+                    <h3>{parseFloat(oneProduct.price)}</h3>
+                
+                </>
+            )
+        }    
     </>
-
 )
 }
 
