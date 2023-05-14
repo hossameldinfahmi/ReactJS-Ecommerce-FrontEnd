@@ -12,18 +12,33 @@ import {
 import ChangePasswordForm from "../../components/ChangePassword/ChangePassword";
 import ChangeEmailForm from "../../components/ChangeEmail/ChangeEmail";
 import ChangeAddressForm from "../../components/ChangeAddress/ChangeAddress";
+import { fetchUserData } from "../../store/authSlice/login";
+import { useDispatch } from "react-redux";
 
 function UserProfile() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
     }
   }, [isLoggedIn, navigate]);
 
-  console.log(user);
+  useEffect(() => {
+    const response = async () => {
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_API_URL}/auth/profile`
+      );
+      const resJson = await res.json();
+
+      console.log(`fetch data ${JSON.stringify(resJson)}`);
+    };
+    response();
+  }, [dispatch]);
+
+  console.log(`Tis is user Data ${JSON.stringify(user)}`);
   return (
     <div className="p-16">
       <div className="p-8 bg-gray-100 rounded-full shadow-md mt-24 flex flex-col md:flex-row items-center">
@@ -49,10 +64,10 @@ function UserProfile() {
           </p>
           <p className="mt-8 text-gray-500">Email: {user?.email}</p>
           <p className="mt-2 text-gray-500">Phone: {user?.phone}</p>
-          <p className="mt-2 text-gray-500">
+          {/* <p className="mt-2 text-gray-500">
             Address: {user?.addresses[0].country}, {user?.addresses[0].city},{" "}
             {user?.addresses[0].street}, {user?.addresses[0].building_number}
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="mt-12 flex flex-col justify-center">

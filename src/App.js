@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 function App() {
   console.log("first");
@@ -38,6 +39,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="myorders" element={<MyOrders />} />
         </Routes>
 
         <Footer />
