@@ -16,8 +16,26 @@ const Products = () => {
 
     const allProducts = `${process.env.REACT_APP_BASE_API_URL}/products/`
     
+    console.log("Products loaded")
+
     useEffect(()=>{
-      dispatch(fetchProducts(allProducts))
+        //get url session value first
+        const sessionUrl = sessionStorage.getItem('urlValue') || '';
+
+        //check if == null dispach with allProducts url
+        if(!sessionUrl){
+            dispatch(fetchProducts(allProducts))
+            //set its value to allProducts
+            sessionStorage.setItem('urlValue', allProducts);
+        }else{
+            //if not == null, dispacth with its value
+            dispatch(fetchProducts(sessionUrl))
+        }
+            
+        
+
+
+      
     },[allProducts, dispatch])
 
     const products = useSelector((state)=> state.products.items)
@@ -26,11 +44,13 @@ const Products = () => {
     const previous = useSelector((state) => state.products.previous)
 
     const nextPage = () =>{
+        sessionStorage.setItem('urlValue', next);
         dispatch(productActions.replaceProducts({isLoading: true}))
         dispatch(fetchProducts(next))
     }
 
     const prevPage = () => {
+        sessionStorage.setItem('urlValue', previous);
         dispatch(productActions.replaceProducts({isLoading: true}))
         dispatch(fetchProducts(previous))
     }
