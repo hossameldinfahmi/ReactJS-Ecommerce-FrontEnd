@@ -61,7 +61,7 @@ function ChangeAddressForm() {
       );
       console.log(response);
 
-      toast.success("Password Changed Succsesuflly", {
+      toast.success("Address Changed Succsesuflly", {
         position: toast.POSITION.TOP_RIGHT,
       });
       handleLogout();
@@ -82,7 +82,7 @@ function ChangeAddressForm() {
     >
       {(formik) => (
         <Form>
-          <h2 className="text-4xl font-extrabold my-6">Change Email</h2>
+          <h2 className="text-4xl font-extrabold my-6">Change Address</h2>
 
           <div className="mb-4">
             <label htmlFor="password">Password</label>
