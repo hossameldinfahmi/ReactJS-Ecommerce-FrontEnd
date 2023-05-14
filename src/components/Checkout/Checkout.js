@@ -1,5 +1,14 @@
+import { checkout } from "../../store/orders/order-actions"
+import { useDispatch } from "react-redux";
 
 function CheckOut(props){
+
+    const dispatch = useDispatch();
+
+    function  orderCheckout(){
+        dispatch(checkout());
+    }
+
     return (
         <div className=" container m-10"  style={{ width: "40%" }}>
                         <h1 className="font-bold pb-3">Order Summary</h1>
@@ -19,7 +28,7 @@ function CheckOut(props){
                             <p class="inline-block mr-4  font-bold">Order total</p>
                             <span class="inline-block mr-4 font-semibold">${props.orderTotal}</span>
                         </div>
-                        <button class="bg-[#1e293b] hover:bg-[#475569] text-white font-bold py-3 m-2 rounded-full w-full">
+                        <button onClick={()=>orderCheckout()}  class="bg-[#1e293b] hover:bg-[#475569] text-white font-bold py-3 m-2 rounded-full w-full">
                             CheckOut
                         </button>
                     </div>
