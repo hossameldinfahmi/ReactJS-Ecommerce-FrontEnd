@@ -14,8 +14,8 @@ import {
 } from "@heroicons/react/24/outline";
 import "./NavbarMenu.css";
 const navigation = [
-  { name: "Men", href: "#", current: true },
-  { name: "Women", href: "#", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "Products", href: "#", current: false },
   { name: "Beautuy", href: "#", current: false },
   { name: "Sports", href: "#", current: false },
   { name: "Explore", href: "#", current: false },
@@ -59,7 +59,7 @@ export default function NavBar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src={`https://res.cloudinary.com/das9oh9bs/${user}`}
+                    src="/images/navbar/logo.svg"
                     alt="Your Company"
                   />
                   <img
@@ -147,7 +147,7 @@ export default function NavBar() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Settings
+                            Your Orders
                           </a>
                         )}
                       </Menu.Item>

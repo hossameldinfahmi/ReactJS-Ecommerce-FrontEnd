@@ -1,6 +1,6 @@
 import { cartActions } from "./cart-slice";
 import { asycnWrapper } from "../../utils/libs";
-import jwtDecode from 'jwt-decode';
+import jwtDecode from "jwt-decode";
 
 const accessToken = localStorage.getItem('token');
 const user_id = accessToken ? jwtDecode(accessToken).user_id : '';
@@ -42,29 +42,30 @@ export const fetchCartItems = () => {
     }
 }
 
-export const deleteCartItem = (id) => {
-    return async (dispatch) => {
-        const deleteFromCar = async (id) => {
-            const response = await fetch(
-                `${process.env.REACT_APP_BASE_API_URL}/cart/delete-cart-item/${id}/`,
-                {
-                    method: 'DELETE',
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    }
-                }
-            );
-            if (!response.ok) {
-                throw new Error('Could not delete item from cart');
-            }
-        }
 
-        // eslint-disable-next-line no-unused-vars
-        const [error, data] = await asycnWrapper(deleteFromCar(id));
-        if (error) return console.log(error.message);
-        dispatch(cartActions.deleteFromCart({ id }))
-    }
-}
+export const deleteCartItem = (id) => {
+  return async (dispatch) => {
+    const deleteFromCar = async (id) => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_API_URL}/cart/delete-cart-item/${id}/`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Could not delete item from cart");
+      }
+    };
+
+    // eslint-disable-next-line no-unused-vars
+    const [error, data] = await asycnWrapper(deleteFromCar(id));
+    if (error) return console.log(error.message);
+    dispatch(cartActions.deleteFromCart({ id }));
+  };
+};
 
 
 export const updateQuantityItem = (cartId, productID, action) => {
@@ -90,7 +91,7 @@ export const updateQuantityItem = (cartId, productID, action) => {
             }
             const data = await response.json()
             return data;
-        }
+  }
 
         // eslint-disable-next-line no-unused-vars
         const [error, data] = await asycnWrapper(updateQuantity(cartId, productID, action));
