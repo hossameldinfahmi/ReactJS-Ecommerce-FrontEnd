@@ -18,7 +18,6 @@ export const fetchProducts = (url) => {
 
     try {
       const productsData = await fetchData();
-      console.log(`productsData: ${JSON.stringify(productsData)}`)
       dispatch(
         productActions.replaceProducts({
           items: productsData.results || [],

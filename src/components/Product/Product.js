@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
  
 
 const Product = ({id, category, name, description, price, available_quatity, image}) =>{
+
+  const imageUrl = process.env.REACT_APP_IMGE_API_URL
+
+
   return(
     <>
-      <img src={image} 
+      <img src={imageUrl+image} 
       alt="product"
       />
       <div className="card-body">
