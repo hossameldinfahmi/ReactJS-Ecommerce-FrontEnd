@@ -92,9 +92,12 @@ export default function NavBar() {
                 <SearchBar />
                 <button
                   type="button"
-                  className="rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-900 focus:outline-none  focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-100"
+                  className="rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-900 focus:outline-none relative  focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-100"
                 >
                   <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+                  <div className="number w-4 h-4 block bg-green-600 text-white text-xs absolute top-0 left-0 rounded-full">
+                    4
+                  </div>
                 </button>
 
                 {/* Profile dropdown */}
