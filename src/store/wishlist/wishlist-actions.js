@@ -27,17 +27,17 @@ export const fetchWishlistItems = () => {
             return data;
         }
 
-        try {
-            const data = await fetchData();
-            console.log(data); // Add this console log to see if the data is being returned correctly
-            dispatch(
-              wishlistActions.getWishlist({
-                items: data.product_details.results || [],
-              })
-            );
-          } catch (error) {
-            console.log(error.message);
-          }
+        // try {
+        //     const data = await fetchData();
+        //     console.log(data); 
+        //     dispatch(
+        //       wishlistActions.getWishlist({
+        //         items: data.product_details.results || [],
+        //       })
+        //     );
+        //   } catch (error) {
+        //     console.log(error.message);
+        //   }
         const [error , data ] = await asycnWrapper(fetchData());
         if(error){
             return console.log(error.message);
@@ -45,7 +45,7 @@ export const fetchWishlistItems = () => {
 
         dispatch(
             wishlistActions.getWishlist({
-                items : data.product_details.results || []
+                items : data[0].product_details.results || []
             })
         )
 
