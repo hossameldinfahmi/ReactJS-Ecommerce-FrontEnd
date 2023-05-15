@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteWishlistItem } from '../../store/wishlist/wishlist-actions';
-import { useSelector } from 'react-redux';
 import './WishListCard.css';
 
 function WishListCard(props) {

@@ -2,17 +2,19 @@
 import { wishlistActions } from './wishlist-slice';
 import { asycnWrapper } from '../../utils/libs';
 import jwtDecode from 'jwt-decode';
+import { Navigate } from 'react-router-dom';
 
 const accessToken = localStorage.getItem('token');
 const user_id = accessToken ? jwtDecode(accessToken).user_id : '';
 
 
-export const fetchWishlistItems = () => {
+export const fetchWishlistItems = (url) => {
     console.log("Fetching wishlist items...");
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch(
-                `${process.env.REACT_APP_BASE_API_URL}/wishlist/user`,
+                // `${process.env.REACT_APP_BASE_API_URL}/wishlist/user`,
+                 url,
                 {
                     headers : {
                         Authorization: `Bearer ${accessToken}`
@@ -27,18 +29,6 @@ export const fetchWishlistItems = () => {
             console.log(data);
             return data;
         }
-
-        // try {
-        //     const data = await fetchData();
-        //     console.log(data); 
-        //     dispatch(
-        //       wishlistActions.getWishlist({
-        //         items: data.product_details.results || [],
-        //       })
-        //     );
-        //   } catch (error) {
-        //     console.log(error.message);
-        //   }
         const [error , data ] = await asycnWrapper(fetchData());
         if(error){
             return console.log(error.message);
@@ -46,7 +36,10 @@ export const fetchWishlistItems = () => {
         
         dispatch(
             wishlistActions.getWishlist({
-                items : data[0].product_details.results || []
+                items : data[0].product_details.results || [],
+                isLoading:false,
+                next:data[0].product_details.next,
+                previous:data[0].product_details.previous
             })
         )
 
