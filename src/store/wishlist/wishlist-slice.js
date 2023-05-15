@@ -3,7 +3,7 @@ const { createSlice } = require('@reduxjs/toolkit');
 const WishlistSlice = createSlice({
     name:'wishlist',
     initialState:{
-        items:[]
+        items: []
     },
     reducers:{
         getWishlist(state,actions) {
