@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { wishlistActions } from './wishlist-slice';
 import { asycnWrapper } from '../../utils/libs';
 import jwtDecode from 'jwt-decode';
@@ -42,7 +43,7 @@ export const fetchWishlistItems = () => {
         if(error){
             return console.log(error.message);
         }
-
+        
         dispatch(
             wishlistActions.getWishlist({
                 items : data[0].product_details.results || []
