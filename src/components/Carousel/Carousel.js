@@ -39,7 +39,9 @@ function Carousel() {
       >
         <div className="w-1/2">
           <div className="flex flex-col h-full justify-center">
-            <p className="text-gray-600 text-xl mb-3">Paragraph goes here 🔥</p>
+            <p className="text-gray-600 text-xl mb-3">
+              Huge Savings Fashion Blowout 🔥
+            </p>
             <h2 className="text-6xl font-bold mb-9">
               Exclusive collection for everyone
             </h2>
@@ -70,9 +72,12 @@ function Carousel() {
       >
         <div className="w-1/2">
           <div className="flex flex-col h-full justify-center">
-            <p className="text-gray-600 text-xl mb-3">Paragraph goes here 🔥</p>
+            <p className="text-gray-600 text-xl mb-3">
+              Don't Miss Out: Fashion Markdowns 🎉
+            </p>
             <h2 className="text-6xl font-bold mb-9">
-              Exclusive collection for everyone
+              {" "}
+              Everyone can now enjoy an exclusive collection
             </h2>
             <button
               type="button"
@@ -100,9 +105,11 @@ function Carousel() {
       >
         <div className="w-1/2">
           <div className="flex flex-col h-full justify-center">
-            <p className="text-gray-600 text-xl mb-3">Paragraph goes here 🔥</p>
+            <p className="text-gray-600 text-xl mb-3">
+              Save Big: Fashion Sale Items 💰
+            </p>
             <h2 className="text-6xl font-bold mb-9">
-              Exclusive collection for everyone
+              A collection that's both exclusive and accessible to everyone
             </h2>
             <button
               type="button"
