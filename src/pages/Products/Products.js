@@ -10,6 +10,8 @@ import { productActions } from "../../store/products/products-slice";
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 
+import classes from "./Products.module.css"
+
 const Products = () => {
 
     const dispatch = useDispatch();
@@ -55,6 +57,8 @@ const Products = () => {
         dispatch(fetchProducts(previous))
     }
 
+    console.log(classes.cardAdditional)
+
     return(
     <Fragment>
         <div>
@@ -66,7 +70,7 @@ const Products = () => {
                 ): (
                     products.map((oneProduct)=>{
                         return ( 
-                            <Card key={oneProduct.id}>
+                            <Card className={classes.input} key={oneProduct.id}>
                                     <Product {...oneProduct}/>
                             </Card> 
                     )})
