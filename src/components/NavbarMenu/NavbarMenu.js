@@ -180,9 +180,10 @@ export default function NavBar() {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Link
-                  to={item.to}
+                <Disclosure.Button
                   key={item.name}
+                  as="a"
+                  href={item.href}
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"
@@ -192,7 +193,7 @@ export default function NavBar() {
                   aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
-                </Link>
+                </Disclosure.Button>
               ))}
             </div>
           </Disclosure.Panel>

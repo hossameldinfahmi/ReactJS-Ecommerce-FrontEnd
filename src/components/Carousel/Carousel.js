@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 import "./Carousel.css";
 
 function Carousel() {
@@ -41,13 +43,14 @@ function Carousel() {
             <h2 className="text-6xl font-bold mb-9">
               Exclusive collection for everyone
             </h2>
-            <button
+            <Link
               type="button"
+              to="/products"
               className="flex items-center justify-center text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-48 h-12"
             >
               Explore Now
               <FaSearch className="ml-2" />
-            </button>
+            </Link>
           </div>
         </div>
         <div className="w-1/2 mr-4">
