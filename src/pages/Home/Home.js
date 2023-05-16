@@ -12,11 +12,11 @@ const Home = () => {
     <Fragment>
       <Carousel />
       <BannarSection />
+      <ProductCard />
 
       <SlideCards />
-      <PricingCards />
+      {/* <PricingCards /> */}
 
-      <ProductCard />
       <PartnarsCards />
     </Fragment>
   );

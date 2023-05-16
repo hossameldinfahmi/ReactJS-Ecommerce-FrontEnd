@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  isLoggedIn: localStorage.getItem("token") || false,
+  isLoggedIn: localStorage.getItem("token") ? true : false,
   user: null,
 };
 

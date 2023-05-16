@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { fetchUserData } from "../../store/authSlice/login";
 import { useEffect } from "react";
+import { fetchCartItems } from "../../store/cart/cart-actions";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     dispatch(fetchUserData());
+    dispatch(fetchCartItems());
   }, [dispatch]);
 
   const initialValues = {
