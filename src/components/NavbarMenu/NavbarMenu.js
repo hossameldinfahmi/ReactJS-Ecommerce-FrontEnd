@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchUserData, logout } from "../../store/authSlice/login";
 import { Link } from "react-router-dom";
+import { fetchCartItems } from "../../store/cart/cart-actions";
 
 import {
   Bars3Icon,
@@ -14,11 +15,8 @@ import {
 } from "@heroicons/react/24/outline";
 import "./NavbarMenu.css";
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Products", href: "#", current: false },
-  { name: "Beautuy", href: "#", current: false },
-  { name: "Sports", href: "#", current: false },
-  { name: "Explore", href: "#", current: false },
+  { name: "Home", to: "/", current: true },
+  { name: "Products", to: "products", current: false },
 ];
 
 function classNames(...classes) {
@@ -29,9 +27,11 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const cartItems = useSelector((state) => state.cart.items);
 
   useEffect(() => {
     dispatch(fetchUserData());
+    dispatch(fetchCartItems());
   }, [dispatch, isLoggedIn]);
 
   const handleLogout = () => {
@@ -71,9 +71,9 @@ export default function NavBar() {
                 <div className="hidden sm:ml-6 sm:block ">
                   <div className="flex space-x-4 ">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className={classNames(
                           item.current
                             ? "bg-gray-200 text-black"
@@ -83,22 +83,25 @@ export default function NavBar() {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <SearchBar />
-                <button
+                <Link
+                  to="/cart"
                   type="button"
                   className="rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-900 focus:outline-none relative  focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-100"
                 >
                   <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                  <div className="number w-4 h-4 block bg-green-600 text-white text-xs absolute top-0 left-0 rounded-full">
-                    4
-                  </div>
-                </button>
+                  {isLoggedIn && (
+                    <div className="number text-center w-4 h-4 block bg-green-600 text-white text-xs absolute top-0 left-0 rounded-full">
+                      {cartItems.length ? cartItems.length : 0}
+                    </div>
+                  )}
+                </Link>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -143,21 +146,20 @@ export default function NavBar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="."
+                          <Link
+                            to="/orders"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
                             Your Orders
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="."
+                          <Link
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -165,7 +167,7 @@ export default function NavBar() {
                             onClick={handleLogout}
                           >
                             Sign out
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>
@@ -178,10 +180,9 @@ export default function NavBar() {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Disclosure.Button
+                <Link
+                  to={item.to}
                   key={item.name}
-                  as="a"
-                  href={item.href}
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"
@@ -191,7 +192,7 @@ export default function NavBar() {
                   aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
-                </Disclosure.Button>
+                </Link>
               ))}
             </div>
           </Disclosure.Panel>
