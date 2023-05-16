@@ -88,8 +88,8 @@ export default function NavBar() {
                   </div>
                 </div>
               </div>
+
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <SearchBar />
                 <Link
                   to="/cart"
                   type="button"
@@ -102,6 +102,15 @@ export default function NavBar() {
                     </div>
                   )}
                 </Link>
+                <SearchBar />
+                {!isLoggedIn && (
+                  <Link
+                    to="/login"
+                    className="text-white ml-3 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
+                  >
+                    login
+                  </Link>
+                )}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
