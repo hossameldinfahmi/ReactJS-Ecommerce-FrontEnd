@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import promoImage from "../../../assets/images/Products/promo.png";
+
 export default function BannarSection() {
   return (
     <div className="bg-white">
@@ -10,22 +13,22 @@ export default function BannarSection() {
               On special offers
             </h2>
             <p className="mt-6 text-lg leading-8 text-dark-300">
-              Register to receive news about the latest, savings combos,
-              discount codes...
+              Exclusive combos, and discount codes. Don't miss out on our newest
+              arrivals and special offers
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-              <a
-                href="."
-                className="rounded-md bg-gray-800 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              <Link
+                to="/products"
+                className="rounded-md bg-gray-800 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Go To Products
-              </a>
+              </Link>
             </div>
           </div>
           <div className="relative mt-16 h-80 lg:mt-8">
             <img
               className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
-              src="https://ciseco-nextjs.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpromo3.4210c497.png&w=1080&q=75"
+              src={promoImage}
               alt="App screenshot"
               width={431}
               style={{ width: "431px" }}
