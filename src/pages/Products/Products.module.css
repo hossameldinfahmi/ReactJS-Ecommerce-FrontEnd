@@ -1,0 +1,10 @@
+.input {
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 90%;
+    max-width: 40rem;
+  }
+
+  .input img{
+    width: 30px;
+  }
