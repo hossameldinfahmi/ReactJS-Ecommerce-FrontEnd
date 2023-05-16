@@ -36,10 +36,10 @@ export const fetchWishlistItems = (url) => {
         
         dispatch(
             wishlistActions.getWishlist({
-                items : data[0].product_details.results || [],
+                items : data.length === 0 ? [] : data[0].product_details.results ,
                 isLoading:false,
-                next:data[0].product_details.next,
-                previous:data[0].product_details.previous
+                next: data.length === 0 ? null : data[0].product_details.next,
+                previous:data.length === 0 ? null : data[0].product_details.previous
             })
         )
 
