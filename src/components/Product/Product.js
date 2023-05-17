@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { addItemToCart } from "../../store/cart/cart-actions";
+import { addItemToWishlist } from "../../store/wishlist/wishlist-actions";
 import { useDispatch } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
  
+import classes from "./Product.module.css"
 
-const Product = ({id, category, name, description, price, available_quatity, image}) =>{
+const Product = ({id, category, name, description, price, available_quantity, image}) =>{
 
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -21,36 +23,50 @@ const Product = ({id, category, name, description, price, available_quatity, ima
   }
 
   const handleClick = () => {
+    dispatch(addItemToWishlist(product))
     setIsAnimating(true);
     setTimeout(() => {
       setIsAnimating(false);
     }, 3000);
   };
 
+  console.log(available_quantity)
+
   return(
     <>
-    <div>
-      <img src={imageUrl+image} 
-        
-        alt="product"
-        />
-    </div>
+      <div className={classes.imageIcon}>
+        <div className={classes.icon}>
+          <div className={classes.quantity}>{available_quantity}</div>
 
-      <div >
-        <button onClick={handleClick}>
-          {
-            isAnimating ? 
-            (<FontAwesomeIcon icon={faHeart} beat size="2xl" />):
-            (<FontAwesomeIcon icon={faHeart}  size="2xl" />)
-          }
-        </button>
+          <button onClick={handleClick}>
+            {
+              isAnimating ? 
+              (<FontAwesomeIcon icon={faHeart} beatFade size="lg" style={{color: "rgb(59, 59, 61)",}} />):
+              (<FontAwesomeIcon icon={faHeart} size="lg" style={{color: "rgb(59, 59, 61)",}} />)
+            }
+          </button>
+        </div>
 
-        <h3 className="text-xl tracking-tight text-slate-900">{name}</h3>
-        <h3>{price}</h3>
-        <h3>{description}</h3>
-        <button onClick={addToCart}>Add to Cart</button>
-        <br />
-        <Link to={`/product/${id}`} className="btn">Details </Link>
+        <div className={classes.image}>
+            <img src={imageUrl+image} alt="product"/>
+        </div>
+
+      </div>
+
+      <div className={classes.cardBody}>
+
+        <div className={classes.namePrice}>
+          <h2 className="text-xl tracking-tight text-slate-900">{name}</h2>
+          <span>${parseInt(price)}</span>
+        </div>
+        {/* <p>{category}</p> */}
+        <p>{description}</p>
+
+        <div className={classes.buttons}>
+          <button onClick={addToCart}>Buy Now</button>
+          <Link className={classes.link} to={`/product/${id}`}>D e t a i l s </Link>
+        </div>
+
       </div>
     </>
   )
