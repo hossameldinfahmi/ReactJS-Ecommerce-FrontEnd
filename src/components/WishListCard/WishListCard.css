@@ -35,7 +35,9 @@
     font-size: 16px;
     transition: background-color 0.2s ease-in-out;
   }
-  
+  .add-button:hover {
+    background-color: teal;
+  }
   .remove-button:hover {
     background-color: brown;
   }
