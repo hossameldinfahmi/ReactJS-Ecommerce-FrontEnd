@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { addItemToCart } from "../../store/cart/cart-actions";
+import { addItemToWishlist } from "../../store/wishlist/wishlist-actions";
 import { useDispatch } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +22,7 @@ const Product = ({id, category, name, description, price, available_quatity, ima
   }
 
   const handleClick = () => {
+    dispatch(addItemToWishlist(product))
     setIsAnimating(true);
     setTimeout(() => {
       setIsAnimating(false);
