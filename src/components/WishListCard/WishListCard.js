@@ -39,6 +39,9 @@ function WishListCard(props) {
           <button className="remove-button" onClick={() => handleRemoveItem(item.id)} disabled={isLoading}>
             {isLoading ? 'Removing...' : 'Remove'}
           </button>
+          <button className='add-button'>
+              Add To Cart
+          </button>
         </div>
       </div>
     </>
