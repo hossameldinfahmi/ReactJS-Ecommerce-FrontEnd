@@ -1,21 +1,28 @@
+.container{
+  /* background-color: aquamarine; */
+  margin: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content:center;
+  justify-content: space-around; 
+  padding: 10px;
+}
+
 .input {
-    margin: 2rem auto;
-    padding: 1rem;
-    width: 90%;
-    max-width: 40rem;
-    min-width: 200px;
-  }
-
-  .input img{
-    width: 30px;
-  }
-
-  .container{
-    background-color: aquamarine;
-    /* width: 80vw;
-    height: 80vh; */
-    /* min-width: 300px; */
+    margin-top: 10px;
+    padding: 0.5rem;
     display: flex;
-    flex-direction:row;
-    justify-content: space-around;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+    height: 300px;
+  }
+
+
+  .header{
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(0, 58, 124);
+    font-size: 3em;
+    text-transform: uppercase;
+    /* justify-content: space-between; */
   }

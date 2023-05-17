@@ -33,17 +33,14 @@ const Products = () => {
             //if not == null, dispacth with its value
             dispatch(fetchProducts(sessionUrl))
         }
-            
-        
-
-
-      
     },[allProducts, dispatch])
 
     const products = useSelector((state)=> state.products.items)
     const isLoading = useSelector((state) => state.products.isLoading)
     const next = useSelector((state) => state.products.next)
     const previous = useSelector((state) => state.products.previous)
+
+    // console.log(products[0])
 
     const nextPage = () =>{
         sessionStorage.setItem('urlValue', next);
@@ -57,11 +54,15 @@ const Products = () => {
         dispatch(fetchProducts(previous))
     }
 
-    console.log(classes.cardAdditional)
-
     return(
     <Fragment>
+
+        <div className={classes.header}>
+            <h1>Products</h1>
+        </div>
         <div className={classes.container}>
+
+
                 {isLoading ? (
                     
                     <ClipLoader color={"#000000"} loading={isLoading} size={75} 
