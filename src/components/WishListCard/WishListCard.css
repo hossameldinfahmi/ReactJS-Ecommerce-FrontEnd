@@ -25,7 +25,19 @@
     font-size: 16px;
     transition: background-color 0.2s ease-in-out;
   }
-  
+  .add-button {
+    padding: 12px 16px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .add-button:hover {
+    background-color: teal;
+  }
   .remove-button:hover {
     background-color: brown;
   }

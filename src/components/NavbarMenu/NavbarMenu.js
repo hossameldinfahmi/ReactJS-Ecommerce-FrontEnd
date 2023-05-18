@@ -112,6 +112,15 @@ export default function NavBar() {
                   </Link>
                 )}
 
+                {!isLoggedIn && (
+                  <Link
+                    to="/registration"
+                    className="text-white ml-3 bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
+                  >
+                    Regiser
+                  </Link>
+                )}
+
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>

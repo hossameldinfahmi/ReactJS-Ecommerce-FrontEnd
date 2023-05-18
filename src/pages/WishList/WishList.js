@@ -21,7 +21,7 @@ function WishList() {
 
   const wishlistUrl = `${process.env.REACT_APP_BASE_API_URL}/wishlist/user`
   useEffect(() => {
-    const sessionUrl = sessionStorage.getItem('urlValue') || '';
+    const sessionUrl = sessionStorage.getItem('urlWishlistValue') || '';
 
     console.log("Fetching wishlist items from Wishlist...");
     if(!isLoggedIn) {
@@ -30,7 +30,7 @@ function WishList() {
     else{
       if(!sessionUrl){
         dispatch(fetchWishlistItems(wishlistUrl))
-        sessionStorage.setItem('urlValue',wishlistUrl);
+        sessionStorage.setItem('urlWishlistValue',wishlistUrl);
       }
       else{
         dispatch(fetchWishlistItems(sessionUrl));
@@ -41,12 +41,12 @@ function WishList() {
   },[dispatch,isLoggedIn,navigate , wishlistUrl])
 
   const nextPage = () => {
-    sessionStorage.setItem('urlValue',next);
+    sessionStorage.setItem('urlWishlistValue',next);
     dispatch(wishlistActions.getWishlist({isLoading:true}));
     dispatch(fetchWishlistItems(next));
   }
   const prevPage = () =>{
-    sessionStorage.setItem('urlValue',previous);
+    sessionStorage.setItem('urlWishlistValue',previous);
     dispatch(wishlistActions.getWishlist({isLoading : true}));
     dispatch(fetchWishlistItems(previous));
   }

@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteWishlistItem } from '../../store/wishlist/wishlist-actions';
 import './WishListCard.css';
+import { addItemToCart } from '../../store/cart/cart-actions';
 
 function WishListCard(props) {
   const imgUrl = process.env.REACT_APP_IMGE_API_URL;
   const item = props.item;
+  const product = {id:item.id};
+
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isAddLoad , setIsAddLoad] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -16,6 +20,10 @@ function WishListCard(props) {
     dispatch(deleteWishlistItem(id)).then(() => {
       setIsLoading(false);
     });
+  }
+  const addToCart = () => {
+    setIsAddLoad(true)
+    dispatch(addItemToCart(product)).then(()=> {setIsAddLoad(false)})
   }
 
   return (
@@ -38,6 +46,9 @@ function WishListCard(props) {
           </p>
           <button className="remove-button" onClick={() => handleRemoveItem(item.id)} disabled={isLoading}>
             {isLoading ? 'Removing...' : 'Remove'}
+          </button>
+          <button className='add-button' onClick={addToCart}>
+              {isAddLoad ? "Adding..." : "Add to Cart"}
           </button>
         </div>
       </div>

@@ -124,6 +124,7 @@ export const addItemToCart = (product) => {
           },
         }
       );
+      console.log(product);
       if (!response.ok) {
         throw new Error("Could not Add item To cart");
       }
