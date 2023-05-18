@@ -6,6 +6,7 @@ const accessToken = localStorage.getItem('token');
 export const checkout = () => {
     return async (dispatch) => {
         const orderCheckout = async () => {
+            const accessToken = localStorage.getItem('token');
             const response = await fetch(
                 `${process.env.REACT_APP_BASE_API_URL}/orders/checkout/`,
                 {
@@ -34,6 +35,7 @@ export const checkout = () => {
 export const myorder = () => {
     return async (dispatch) => {
         const fetchOrder = async () => {
+            const accessToken = localStorage.getItem('token');
             const response = await fetch(
                 `${process.env.REACT_APP_BASE_API_URL}/orders/`,
                 {
