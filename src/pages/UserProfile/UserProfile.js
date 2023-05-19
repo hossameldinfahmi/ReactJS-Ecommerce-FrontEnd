@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 function UserProfile() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const [userData, setUserData] = useState({});
@@ -51,7 +51,7 @@ function UserProfile() {
     response();
   }, []);
 
-  console.log(`Tis is user Data ${JSON.stringify(user)}`);
+  console.log(`Tis is user Data ${JSON.stringify(userData)}`);
   return (
     <div className="p-16">
       <div className="p-8 bg-gray-100 rounded-full shadow-md mt-24 flex flex-col md:flex-row items-center">
@@ -59,8 +59,8 @@ function UserProfile() {
           <div className="w-48 overflow-hidden h-48 bg-indigo-100 mx-16  rounded-full shadow-2xl flex items-center justify-between text-indigo-500 ">
             <img
               src={
-                user && user.image
-                  ? `https://res.cloudinary.com/das9oh9bs/${user?.image}`
+                userData && userData.image
+                  ? `https://res.cloudinary.com/das9oh9bs/${userData?.image}`
                   : "https://pixsector.com/cache/50fcb576/av0cc3f7b41cb8510e35c.png"
               }
               alt=""

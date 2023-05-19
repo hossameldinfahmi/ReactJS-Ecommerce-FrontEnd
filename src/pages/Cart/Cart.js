@@ -5,6 +5,7 @@ import { fetchCartItems } from "../../store/cart/cart-actions";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CheckOut from "../../components/Checkout/Checkout";
+import EmptyList from "../../components/EmptyList/EmptyList";
 
 const Cart = () => {
 
@@ -22,16 +23,16 @@ const Cart = () => {
         else{
             dispatch(fetchCartItems());
         }
-    }, [dispatch,isLoggedIn, navigate])
+    }, [dispatch,isLoggedIn, cartItems,navigate])
 
     return (
         <Fragment>
-
-            <div className=" container mx-auto py-16 lg:pb-28 lg:pt-20 ">
+            {!cartItems.length && <EmptyList list='Cart' /> }
+            {cartItems.length && <div className=" container mx-auto py-16 lg:pb-28 lg:pt-20 ">
                 <div class="mb-5 sm:mb-15 ">
                     <h2 class="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">Shopping Cart</h2>
                 </div>
-                {cartItems.length &&<div className="flex justify-between">
+                <div className="flex justify-between">
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg" style={{ width: "90%" }}>
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -63,8 +64,8 @@ const Cart = () => {
                         </table>
                     </div>
                     <CheckOut orderTotal={orderTotal} />
-                </div>}
-            </div>
+                </div>
+            </div>}
         </Fragment>
     )
 }
