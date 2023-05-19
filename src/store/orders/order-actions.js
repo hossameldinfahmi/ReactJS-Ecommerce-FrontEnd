@@ -1,11 +1,11 @@
 import { asycnWrapper } from "../../utils/libs";
 import { orderActions } from "./order-slice";
-
-const accessToken = localStorage.getItem('token');
+import { toast } from "react-toastify";
 
 export const checkout = () => {
     return async (dispatch) => {
         const orderCheckout = async () => {
+            const accessToken = localStorage.getItem('token');
             const response = await fetch(
                 `${process.env.REACT_APP_BASE_API_URL}/orders/checkout/`,
                 {
@@ -25,7 +25,11 @@ export const checkout = () => {
 
 
         const [error, data] = await asycnWrapper(orderCheckout());
-        if (error) return console.log(error.message);
+        if (error) {
+            return toast.error(error.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+        }
         window.location.href = data.url
 
     }
@@ -34,6 +38,7 @@ export const checkout = () => {
 export const myorder = () => {
     return async (dispatch) => {
         const fetchOrder = async () => {
+            const accessToken = localStorage.getItem('token');
             const response = await fetch(
                 `${process.env.REACT_APP_BASE_API_URL}/orders/`,
                 {
