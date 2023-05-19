@@ -3,12 +3,10 @@ import { asycnWrapper } from "../../utils/libs";
 import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 
-let accessToken = localStorage.getItem("token");
-let user_id = accessToken ? jwtDecode(accessToken).user_id : "";
 
 export const fetchCartItems = () => {
-  accessToken = localStorage.getItem("token");
-  user_id = accessToken ? jwtDecode(accessToken).user_id : "";
+  let accessToken = localStorage.getItem("token");
+  let user_id = accessToken ? jwtDecode(accessToken).user_id : "";
   return async (dispatch) => {
     const fetchData = async () => {
       console.log(user_id);
@@ -21,6 +19,7 @@ export const fetchCartItems = () => {
         }
       );
       if (!response.ok) {
+        console.log(response);
         throw new Error("Could not fetch carts from DB");
       }
 
@@ -39,9 +38,10 @@ export const fetchCartItems = () => {
     // }
     const [error, data] = await asycnWrapper(fetchData());
     if (error) {
-      return toast.error(error.message, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      return
+      // return toast.error(error.message, {
+      //   position: toast.POSITION.TOP_RIGHT,
+      // });
     }
     dispatch(
       cartActions.getCartItems({
@@ -54,6 +54,7 @@ export const fetchCartItems = () => {
 export const deleteCartItem = (id) => {
   return async (dispatch) => {
     const deleteFromCar = async (id) => {
+      let accessToken = localStorage.getItem("token");
       const response = await fetch(
         `${process.env.REACT_APP_BASE_API_URL}/cart/delete-cart-item/${id}/`,
         {
@@ -85,6 +86,7 @@ export const deleteCartItem = (id) => {
 export const updateQuantityItem = (cartId, productID, action) => {
   return async (dispatch) => {
     const updateQuantity = async (cartId, productID, action) => {
+      let accessToken = localStorage.getItem("token");
       const response = await fetch(
         `${process.env.REACT_APP_BASE_API_URL}/cart/update-cart/${cartId}/`,
         {
@@ -130,6 +132,7 @@ export const updateQuantityItem = (cartId, productID, action) => {
 export const addItemToCart = (product) => {
   return async (dispatch) => {
     const addTocart = async (product) => {
+      let accessToken = localStorage.getItem("token");
       const response = await fetch(
         `${process.env.REACT_APP_BASE_API_URL}/cart/add-to-cart/`,
         {

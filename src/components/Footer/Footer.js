@@ -1,29 +1,7 @@
 import React from "react";
 import { Typography } from "@material-tailwind/react";
-const SITEMAP = [
-  {
-    title: "Shop",
-    links: ["All Products", "New Arrivals", "Best Sellers", "Sale"],
-  },
-  {
-    title: "Categories",
-    links: [
-      "Electronics",
-      "Clothing",
-      "Home & Garden",
-      "Beauty & Personal Care",
-    ],
-  },
-  {
-    title: "Help Center",
-    links: ["FAQ", "Contact Us", "Shipping & Returns", "Track Your Order"],
-  },
-  {
-    title: "About Us",
-    links: ["Our Story", "Blog", "Affiliate Program", "Terms & Conditions"],
-  },
-];
-
+import { Link } from "react-router-dom";
+import { SITEMAP } from "./link";
 const currentYear = new Date().getFullYear();
 function Footer() {
   return (
@@ -47,12 +25,13 @@ function Footer() {
                     color="blue-gray"
                     className="font-normal"
                   >
-                    <a
-                      href="0"
+                    <Link
+                      to={link[Object.keys(link)[0]]}
                       className="inline-block py-1 pr-2 transition-transform hover:scale-105"
                     >
-                      {link}
-                    </a>
+                      {Object.keys(link)[0]}
+                    </Link>
+                    
                   </Typography>
                 ))}
               </ul>
