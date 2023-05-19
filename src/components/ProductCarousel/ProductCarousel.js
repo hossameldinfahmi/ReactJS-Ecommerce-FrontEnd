@@ -4,7 +4,6 @@ import ProductData from "../ProductData/ProductData";
 import {ProductSlicing , responsive} from "../ProductSlice/ProductSlice";
 import { useState } from 'react';
 
-
 function ProductCarousel() {
   const products = ProductSlicing();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,6 +12,7 @@ function ProductCarousel() {
   const product = products.map((item) => (
     <ProductData
       key = {item.id}
+      id = {item.id}
       name={item.name}
       image={item.image}
       price={item.price}
@@ -35,7 +35,7 @@ function ProductCarousel() {
       <h1 style={{fontSize: '36px', fontWeight: '700', textAlign: 'center', marginBottom: '2rem', color: '#1a202c', textTransform: 'uppercase', letterSpacing: '2px'}}>Best Products We Have</h1>
       <p style={{textAlign: 'center', fontSize: '18px', marginBottom: '2rem', color: '#6b7280'}}>Discover our top-selling products and find your new favorites.</p>
     </div>
-    <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '3rem'}}>
+    <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}>
       <Carousel
         showDots={true}
         responsive={responsive}
@@ -44,6 +44,8 @@ function ProductCarousel() {
         autoPlaySpeed={3000}
         infinite={true}
         beforeChange={handleBeforeChange}
+        dotListClass="custom-dot-list-style"
+
       >
         {product}
       </Carousel>

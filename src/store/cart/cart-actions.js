@@ -146,7 +146,7 @@ export const addItemToCart = (product) => {
       if (!response.ok) {
         throw new Error("Could not Add item To cart");
       }
-
+      
       const data = await response.json();
       return data;
     };
