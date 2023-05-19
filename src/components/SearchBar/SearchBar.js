@@ -26,7 +26,7 @@ function SearchBar() {
               setProducts(response.data.results);
             })
             .catch((error) => console.error(error));
-        }, 1000)
+        }, 2000)
       );
     } else {
       setProducts([]);
