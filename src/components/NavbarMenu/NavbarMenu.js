@@ -47,7 +47,6 @@ export default function NavBar() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative lg:flex sm:flex-wrap lg:h-16 items-center justify-between">
               <div className="absolute z-30 inset-y-0 left-0 flex lg:items-center sm:hidden">
-                {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex lg:items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-900">
                   <span className="sr-only">Open main menu</span>
                   {open ? (

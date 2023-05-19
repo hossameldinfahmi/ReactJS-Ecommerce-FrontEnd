@@ -10,14 +10,14 @@ function SearchBar() {
   const [typingTimeout, setTypingTimeout] = useState(null);
 
   const handleInputChange = (event) => {
-    const value = event.target.value.trim();
+    const value = event.target.value;
     setSearchTerm(value);
 
     if (typingTimeout) {
       clearTimeout(typingTimeout);
     }
 
-    if (value !== "") {
+    if (value.trim() !== "") {
       setTypingTimeout(
         setTimeout(() => {
           axios
