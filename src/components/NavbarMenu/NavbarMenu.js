@@ -39,6 +39,9 @@ export default function NavBar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     dispatch(logout());
+    // window.location.href = "http://localhost:3000"
+    // http://localhost:3000
+    window.location.reload()
   };
   return (
     <Disclosure as="nav" className="bg-gray-100">
