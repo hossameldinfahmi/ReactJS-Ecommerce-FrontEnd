@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 import { wishlistActions } from '../../store/wishlist/wishlist-slice';
+import EmptyList from "../../components/EmptyList/EmptyList";
 
 function WishList() {
   console.log("Rendering WishList...");
@@ -53,6 +54,9 @@ function WishList() {
 
   return (
     <Fragment>
+      {/* {!wishlistItems.length && <EmptyList list='Wishlist' /> } */}
+      {/* {wishlistItems.length &&  */}
+      <>
       <h1 className="ml-32 mt-24 mb-16 font-bold text-5xl">My Wishlist</h1>
       <div>
         {isLoading ? (
@@ -95,6 +99,9 @@ function WishList() {
 
 </div>
       </div>
+      </>
+      
+      {/* } */}
     </Fragment>
   );
 }

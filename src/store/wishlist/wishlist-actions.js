@@ -14,7 +14,7 @@ export const fetchWishlistItems = (url) => {
         const fetchData = async () => {
             const response = await fetch(
                 // `${process.env.REACT_APP_BASE_API_URL}/wishlist/user`,
-                 url,
+                url,
                 {
                     headers : {
                         Authorization: `Bearer ${accessToken}`

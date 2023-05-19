@@ -1,6 +1,7 @@
 import { cartActions } from "./cart-slice";
 import { asycnWrapper } from "../../utils/libs";
 import jwtDecode from "jwt-decode";
+import { toast } from "react-toastify";
 
 let accessToken = localStorage.getItem("token");
 let user_id = accessToken ? jwtDecode(accessToken).user_id : "";
@@ -37,7 +38,11 @@ export const fetchCartItems = () => {
     //     console.log(error.message);
     // }
     const [error, data] = await asycnWrapper(fetchData());
-    if (error) return console.log(error.message);
+    if (error) {
+      return toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
     dispatch(
       cartActions.getCartItems({
         items: data.cart_items || [],
@@ -65,8 +70,15 @@ export const deleteCartItem = (id) => {
 
     // eslint-disable-next-line no-unused-vars
     const [error, data] = await asycnWrapper(deleteFromCar(id));
-    if (error) return console.log(error.message);
+    if (error) {
+      return toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
     dispatch(cartActions.deleteFromCart({ id }));
+    toast.success("Deleted Successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 };
 
@@ -98,13 +110,20 @@ export const updateQuantityItem = (cartId, productID, action) => {
     const [error, data] = await asycnWrapper(
       updateQuantity(cartId, productID, action)
     );
-    if (error) return console.log(error.message);
+    if (error){
+      return toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
     dispatch(
       cartActions.updateQuantity({
         id: data.product,
         quantity: data.quantity,
       })
     );
+    toast.success("Quantity updated Successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 };
 
@@ -124,18 +143,21 @@ export const addItemToCart = (product) => {
           },
         }
       );
-      console.log(product);
       if (!response.ok) {
         throw new Error("Could not Add item To cart");
       }
 
       const data = await response.json();
-      console.log(data);
       return data;
     };
 
     const [error, data] = await asycnWrapper(addTocart(product));
-    if (error) return console.log(error.message);
+    if (error) 
+    {
+      return toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
     dispatch(
       cartActions.addTocart({
         id: data.id,
@@ -143,5 +165,9 @@ export const addItemToCart = (product) => {
         quantity: data.quantity,
       })
     );
+      toast.success("Add Successfully", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    
   };
 };
