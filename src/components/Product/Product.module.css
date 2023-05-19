@@ -1,87 +1,102 @@
-.imageIcon{
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(221, 221, 221);
-    border-radius: 20px;
-    min-height: 65%;
+.imageIcon {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(221, 221, 221);
+  border-radius: 20px;
+  min-height: 65%;
 }
 
-.image{
-    /* background-color: rgb(17, 49, 14); */
-    border-radius: 5px;
-    width: 100%;
-    height: auto;
-    max-width: 210px;
-    margin-top: 10px;
-    align-self: center;
-    justify-items: center;
-    flex-grow: 2;
-    margin-bottom: 20px;
-    overflow: hidden;
+.image {
+  /* background-color: rgb(17, 49, 14); */
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+  max-width: 210px;
+  margin-top: 10px;
+  align-self: center;
+  justify-items: center;
+  flex-grow: 2;
+  margin-bottom: 20px;
+  overflow: hidden;
 }
 
-.icon{
-    display: flex;
-    justify-content: space-between; 
-    /* background-color: rgb(103, 103, 235); */
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 5px;
+.icon {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: rgb(103, 103, 235); */
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
-.quantity{
-    color: rgb(59, 59, 61);
+.quantity {
+  color: rgb(59, 59, 61);
 }
 
-.cardBody{
-    margin-top: 10px;
-    border-radius: 20px;
-    min-height: 30%;
-    padding-left: .6rem;
-    padding-right: .6rem;
+.cardBody {
+  margin-top: 10px;
+  border-radius: 20px;
+  min-height: 30%;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
 }
 
-
-.cardBody p{
-    font-size: 15px;
-    line-height: 30px;
+.cardBody p {
+  font-size: 12px;
+  line-height: 18px;
 }
 
-.cardBody button{
-    padding: 5px 10px;
-    border-radius: 7px;
-    border: 1px solid;
-    color: aliceblue;
-    background-color: rgb(2, 0, 104);
-    transition-duration: .5s;
+.cardBody button {
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1px solid;
+  color: aliceblue;
+  background-color: rgb(2, 0, 104);
+  transition-duration: 0.5s;
 }
 
-.cardBody button:hover{
-    transform: scale(1.1);
+.cardBody button:hover {
+  transform: scale(1.1);
 }
 
-.namePrice{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.namePrice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .namePrice h2 {
-    font-size: 2em;
-    text-transform: capitalize;
-    color: rgb(2, 43, 90);
-    font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: rgb(2, 43, 90);
+  font-family: sans-serif;
 }
 
-.namePrice span{
-    font-size: 1.1em;
-    color: rgb(228, 194, 3);
-    border: 1px solid;
-    border-radius: 5px;
+.namePrice span {
+  font-size: 15px;
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(228, 194, 3);
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 0 5px !important;
 }
 
-.buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.prodDesc {
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.link {
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 5px;
 }
