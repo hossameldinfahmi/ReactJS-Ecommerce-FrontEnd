@@ -1,0 +1,188 @@
+.App {
+    margin: 2rem 0;
+  }
+  
+  .product--image {
+    width: 100%;
+    height: 250px; /* set a fixed height */
+    object-fit: cover;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 360px;
+    margin: auto 1rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* use a different font family */
+    padding: 1rem;
+    background-color: #fff; /* add a white background */
+    border-radius: 10px; /* add rounded corners */
+    transition: transform 0.2s ease-in-out; /* add transition effect */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* add hover effect */
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-top: 1rem;
+    font-weight: 500; /* add font weight */
+  }
+  
+  .price {
+    color: #6b7280;
+    font-size: 28px;
+    margin: 1rem 0;
+    font-weight: 600; /* add font weight */
+  }
+  
+  .App h1 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align:center;
+    margin-bottom: 2rem;
+    color: #1a202c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .App p {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 2rem;
+    color: #6b7280;
+  }
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 5px; /* add rounded corners */
+    margin-top: 1rem; /* add margin for better spacing */
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
+  
+  .carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem; /* add margin for better spacing */
+  }
+  
+  .carousel-container .react-multi-carousel-item {
+    margin-right: 1rem; /* add margin between cards */
+  }
+  
+  .carousel-container .react-multi-carousel-item:first-child {
+    margin-left: 1rem; /* add left margin to first card */
+  }
+  
+  .carousel-container .react-multi-carousel-item:last-child {
+    margin-right: 0; /* remove margin from last card */
+  }
+  
+  .carousel-container .react-multi-carousel-dot--active {
+    background-color: #000;
+  }
+  
+  .carousel-container .react-multi-carousel-list {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+
+  
+  .carousel-container .react-multi-carousel-dot {
+    background-color: white;
+    width: 24px; 
+    height: 24px; 
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  
+ 
+  
+  .header {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1a202c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .description {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #6b7280;
+  }
+  
+  .product-data {
+    position: relative;
+  }
+  
+  .product-data:hover .overlay {
+    opacity: 1;
+  }
+  
+  .productData .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product-data:hover .overlay h2 {
+    color: #fff;
+  }
+  
+  .product-data:hover .overlay button {
+    opacity: 1;
+  }
+  
+  .product-data h2 {
+    position: relative;
+    z-index: 1;
+    color: #1a202c;
+    font-size: 24px;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+  
+  .product-data button {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .product-data button:hover {
+    opacity: 0.7;
+  }
+  
+  .product-data p {
+    margin-top: 1rem;
+    font-size: 16px;
+    color: #6b7280;
+  }
