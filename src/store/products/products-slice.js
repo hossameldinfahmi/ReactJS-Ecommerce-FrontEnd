@@ -4,6 +4,7 @@ const productSlice = createSlice({
     name : "products",
     initialState:{
         items: [],
+        categories:[],
         isLoading: true,
         next: null,
         previous: null
@@ -14,6 +15,10 @@ const productSlice = createSlice({
             state.isLoading = action.payload.isLoading;
             state.next = action.payload.next;
             state.previous = action.payload.previous;
+        },
+        getcategories(state,action){
+            state.categories = action.payload.categories;
+            state.isLoading = action.payload.isLoading;
         }
     }
 })

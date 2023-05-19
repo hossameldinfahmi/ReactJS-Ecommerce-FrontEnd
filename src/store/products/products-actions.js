@@ -31,3 +31,31 @@ export const fetchProducts = (url) => {
     }
   };
 };
+
+
+export const fetchCategories = () => {
+  return async (dispatch) => {
+    const fetchData = async () => {
+      const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/categories/`);
+
+      if (!response.ok) {
+        throw new Error("Could not fetch categories from DB");
+      }
+
+      const data = await response.json();
+      return data;
+    };
+
+    try {
+      const categories = await fetchData();
+      dispatch(
+        productActions.getcategories({
+          categories: categories.results || [],
+          isLoading: false,
+        })
+      );
+    } catch (error) {
+      throw new Error("categories not feched corerctly");
+    }
+  };
+};

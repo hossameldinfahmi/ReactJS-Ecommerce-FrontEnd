@@ -30,8 +30,6 @@ const Product = ({id, category, name, description, price, available_quantity, im
     }, 3000);
   };
 
-  console.log(available_quantity)
-
   return(
     <>
       <div className={classes.imageIcon}>
