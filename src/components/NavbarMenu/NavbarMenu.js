@@ -45,10 +45,10 @@ export default function NavBar() {
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div className="relative lg:flex sm:flex-wrap lg:h-16 items-center justify-between">
+              <div className="absolute z-30 inset-y-0 left-0 flex lg:items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-900">
+                <Disclosure.Button className="inline-flex lg:items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-900">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -91,7 +91,9 @@ export default function NavBar() {
                 </div>
               </div>
 
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="inset-y-0 right-0 lg:flex  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <SearchBar />
+
                 <Link
                   to="/cart"
                   type="button"
@@ -104,28 +106,29 @@ export default function NavBar() {
                     </div>
                   )}
                 </Link>
-                <SearchBar />
-                {!isLoggedIn && (
-                  <Link
-                    to="/login"
-                    className="block w-full text-white ml-3 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
-                  >
-                    login
-                  </Link>
-                )}
+                <div className="flex">
+                  {!isLoggedIn && (
+                    <Link
+                      to="/login"
+                      className="block w-full text-white ml-3 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
+                    >
+                      login
+                    </Link>
+                  )}
 
-                {!isLoggedIn && (
-                  <Link
-                    to="/registration"
-                    className="block w-full text-white ml-3 bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
-                  >
-                    Register
-                  </Link>
-                )}
+                  {!isLoggedIn && (
+                    <Link
+                      to="/registration"
+                      className="block w-full text-white ml-3 bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
+                    >
+                      Register
+                    </Link>
+                  )}
+                </div>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
-                  <div>
+                  <div className="w-8">
                     {isLoggedIn && (
                       <Menu.Button className="flex rounded-full bg-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-100">
                         <span className="sr-only">Open user menu</span>
