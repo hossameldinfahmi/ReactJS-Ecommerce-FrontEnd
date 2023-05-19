@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
+import './ProductData.css';
 function ProductData(props) {
   const imageUrl = process.env.REACT_APP_IMGE_API_URL;
   console.log(props);
