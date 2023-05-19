@@ -1,0 +1,6 @@
+@media (max-width: 640px) {
+  .navbar-btn {
+    display: block;
+    width: 100%;
+  }
+}

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
-import {  logout } from "../../store/authSlice/login";
+import { logout } from "../../store/authSlice/login";
 import { Link } from "react-router-dom";
 import { fetchUserData } from "../../store/authSlice/login";
 import { useEffect } from "react";
@@ -31,10 +31,10 @@ export default function NavBar() {
   let accessToken = localStorage.getItem("token");
   const dispatch = useDispatch();
   useEffect(() => {
-    if(accessToken){
-    dispatch(fetchUserData());
+    if (accessToken) {
+      dispatch(fetchUserData());
     }
-  }, [dispatch,accessToken]);
+  }, [dispatch, accessToken]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -95,7 +95,7 @@ export default function NavBar() {
                 <Link
                   to="/cart"
                   type="button"
-                  className="rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-900 focus:outline-none relative  focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-100"
+                  className="block w-full rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-900 focus:outline-none relative  focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-100"
                 >
                   <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                   {isLoggedIn && (
@@ -108,7 +108,7 @@ export default function NavBar() {
                 {!isLoggedIn && (
                   <Link
                     to="/login"
-                    className="text-white ml-3 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
+                    className="block w-full text-white ml-3 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
                   >
                     login
                   </Link>
@@ -117,9 +117,9 @@ export default function NavBar() {
                 {!isLoggedIn && (
                   <Link
                     to="/registration"
-                    className="text-white ml-3 bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
+                    className="block w-full text-white ml-3 bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 "
                   >
-                    Regiser
+                    Register
                   </Link>
                 )}
 
@@ -129,34 +129,26 @@ export default function NavBar() {
                     {isLoggedIn && (
                       <Menu.Button className="flex rounded-full bg-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-100">
                         <span className="sr-only">Open user menu</span>
-                        {/* <img
-                          className="h-8 w-8 rounded-full"
-                          src={
-                            user && user.image
-                              ? `https://res.cloudinary.com/das9oh9bs/${user.image}`
-                              : "https://pixsector.com/cache/50fcb576/av0cc3f7b41cb8510e35c.png"
-                          }
-                          alt=""
-                        /> */}
-
-                        {user && <img
-                          className="h-8 w-8 rounded-full"
-                          src={
-                              `https://res.cloudinary.com/das9oh9bs/${user.image}`
-                          }
-                          alt=""
-                        />}
-                        {!user&&<img
-                          className="h-8 w-8 rounded-full"
-                          src={
-                            "https://pixsector.com/cache/50fcb576/av0cc3f7b41cb8510e35c.png"
-                          }
-                          alt=""
-                        />}
+                        {user && (
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={`https://res.cloudinary.com/das9oh9bs/${user.image}`}
+                            alt=""
+                          />
+                        )}
+                        {!user && (
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={
+                              "https://pixsector.com/cache/50fcb576/av0cc3f7b41cb8510e35c.png"
+                            }
+                            alt=""
+                          />
+                        )}
                       </Menu.Button>
                     )}
                   </div>
-                    {console.log(`imge : ${user}`)}
+                  {console.log(`image: ${user}`)}
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"
