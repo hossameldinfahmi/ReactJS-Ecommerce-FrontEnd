@@ -4,14 +4,20 @@ import { asycnWrapper } from '../../utils/libs';
 import jwtDecode from 'jwt-decode';
 import { Navigate } from 'react-router-dom';
 
-const accessToken = localStorage.getItem('token');
-const user_id = accessToken ? jwtDecode(accessToken).user_id : '';
+
 
 
 export const fetchWishlistItems = (url) => {
     console.log("Fetching wishlist items...");
     return async (dispatch) => {
         const fetchData = async () => {
+
+            const accessToken = localStorage.getItem('token');
+            const user_id = accessToken ? jwtDecode(accessToken).user_id : '';
+
+            console.log(`token: ${accessToken}`)
+
+
             const response = await fetch(
                 // `${process.env.REACT_APP_BASE_API_URL}/wishlist/user`,
                 url,
@@ -48,6 +54,10 @@ export const fetchWishlistItems = (url) => {
 
 export const deleteWishlistItem = (id) => {
     return async (dispatch) => {
+
+        const accessToken = localStorage.getItem('token');
+        const user_id = accessToken ? jwtDecode(accessToken).user_id : '';
+
         const deleteFromWishlist = async(id) => {
             const response = await fetch(
                 `${process.env.REACT_APP_BASE_API_URL}/wishlist/product/${id}/`,
@@ -74,6 +84,10 @@ export const deleteWishlistItem = (id) => {
 export const addItemToWishlist = (product) => {
     return async (dispatch) => {
         const addToWishlist = async (product) => {
+
+            const accessToken = localStorage.getItem('token');
+            const user_id = accessToken ? jwtDecode(accessToken).user_id : '';
+
             const response = await fetch(
                 `${process.env.REACT_APP_BASE_API_URL}/wishlist/`,
                 {

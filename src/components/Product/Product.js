@@ -37,9 +37,7 @@ const Product = ({
     }, 3000);
   };
 
-  console.log(available_quantity);
-
-  return (
+  return(
     <>
       <div className={classes.imageIcon}>
         <div className={classes.icon}>
