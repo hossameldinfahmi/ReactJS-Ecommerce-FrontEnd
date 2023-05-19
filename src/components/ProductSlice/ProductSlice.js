@@ -25,7 +25,7 @@ export const responsive = {
   };
 
 
- export function ProductSlice() {
+ export function ProductSlicing() {
     const dispatch = useDispatch();
     const allProducts = `${process.env.REACT_APP_BASE_API_URL}/products/`;
     useEffect(() => {
