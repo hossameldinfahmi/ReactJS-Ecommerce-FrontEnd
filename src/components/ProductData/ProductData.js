@@ -2,6 +2,8 @@
 import { addItemToCart } from '../../store/cart/cart-actions';
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import classes from "../Product/Product.module.css";
 
 import './ProductData.css';
 
@@ -24,7 +26,11 @@ function ProductData(props) {
       <img className="product--image" src={imageUrl + props.image} alt="product image" />
       <h2>{props.name}</h2>
       <p className="price" > price: ${parseFloat(props.price)}</p>
-      <p>{props.description}</p>
+      <p className={classes.prodDesc}>{props.description}</p>
+      <p style={{fontWeight:'bold'}}>...</p>
+        <Link className={classes.link} to={`/product/${props.id}`}>
+            Details{" "}
+          </Link>
       <p>
       <button onClick={addToCart} className={isAddLoad ? 'adding' : ''}>
             {isAddLoad ? 'Adding...' : 'Add to Cart'}
