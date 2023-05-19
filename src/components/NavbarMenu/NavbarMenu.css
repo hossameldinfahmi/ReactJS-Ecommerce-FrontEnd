@@ -1,0 +1,9 @@
+@media screen and (max-width: 640px) {
+  .search-container {
+    width: 100%;
+    margin-right: 0;
+  }
+  .search-input {
+    @apply w-full;
+  }
+}
