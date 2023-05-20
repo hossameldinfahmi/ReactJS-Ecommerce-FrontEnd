@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { addItemToCart } from "../../store/cart/cart-actions";
 import { addItemToWishlist } from "../../store/wishlist/wishlist-actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import classes from "./Product.module.css";
 import { useSelector } from "react-redux";
@@ -29,6 +29,7 @@ const Product = ({
   const imageUrl = process.env.REACT_APP_IMGE_API_URL;
   const product = { id };
 
+
   const addToCart = () => {
     if (!isLoggedIn) {
       navigate("/login");
@@ -51,22 +52,20 @@ const Product = ({
         <div className={classes.icon}>
           <div className={classes.quantity}>{available_quantity}</div>
 
-          <button onClick={handleClick}>
-            {isAnimating ? (
-              <FontAwesomeIcon
-                icon={faHeart}
-                beatFade
-                size="lg"
-                style={{ color: "rgb(59, 59, 61)" }}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faHeart}
-                size="lg"
-                style={{ color: "rgb(59, 59, 61)" }}
-              />
-            )}
-          </button>
+          {
+              isLoggedIn ? (<button onClick={handleClick}>
+                  {
+                  isAnimating ? 
+                  (<FontAwesomeIcon icon={faHeart} beatFade size="2xl" style={{color: "rgb(59, 59, 61)",}} />):
+                  (<FontAwesomeIcon icon={faHeart} size="2xl" style={{color: "rgb(59, 59, 61)",}} />)
+                  }
+              </button>) :(
+                  <button>
+                      <FontAwesomeIcon icon={faLock} size="2xl" />
+                  </button>
+              )
+          }
+
         </div>
 
         <div className={classes.image}>

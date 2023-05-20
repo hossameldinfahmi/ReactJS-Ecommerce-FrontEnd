@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-import { addItemToCart } from '../../store/cart/cart-actions';
-import { useDispatch } from 'react-redux';
-import React, { useState } from 'react';
+import { addItemToCart } from "../../store/cart/cart-actions";
+import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +11,7 @@ function ProductData(props) {
   const productId = {id:props.id};
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const [isAddLoad , setIsAddLoad] = useState(false);
+  const [isAddLoad, setIsAddLoad] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
   const dispatch = useDispatch();
@@ -37,16 +36,16 @@ function ProductData(props) {
   return (
     <div className="card">
       <img className="product--image" src={imageUrl + props.image} alt="product image" />
-      <h2>{props.name}</h2>
+      <h2 style={{maxHeight:'30px' , overflow:'hidden'}} >{props.name}</h2>
       <p className="price--data"> Price:  ${parseFloat(props.price)}</p>
-      <p style={{color:'#333' ,}}>{props.description}</p>
+      <p style={{color:'#333' ,maxHeight:'100px' , overflow:'hidden'}}>{props.description}</p>
       <p style={{fontWeight:'bold'}}>...</p>
       <Link className="link--link" to={`/product/${props.id}`}>
         Details
       </Link>
       <p>
-        <button onClick={addToCart} className={isAddLoad ? 'adding' : ''}>
-          {isAddLoad ? 'Adding...' : 'Add to Cart'}
+        <button onClick={addToCart} className={isAddLoad ? "adding" : ""}>
+          {isAddLoad ? "Adding..." : "Add to Cart"}
         </button>
         {isAdded && <span className="confirmation">Added to cart!</span>}
       </p>

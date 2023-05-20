@@ -6,7 +6,6 @@ import "./Carousel.css";
 
 function Carousel() {
   const [activeSlide, setActiveSlide] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide((prevSlide) => (prevSlide === 2 ? 0 : prevSlide + 1));
@@ -15,7 +14,7 @@ function Carousel() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [activeSlide]);
   const handlePrevClick = () => {
     setActiveSlide((prevSlide) => (prevSlide === 0 ? 2 : prevSlide - 1));
   };
@@ -28,12 +27,14 @@ function Carousel() {
     <div
       id="default-carousel"
       className="relative w-full bg-my-blue"
-      data-carousel="slide"
+      // data-carousel="slide"
     >
       {/* Carousel wrapper */}
+
       <div
+        key="slide1"
         className={`${
-          activeSlide === 0 ? "block" : "hidden"
+          activeSlide === 2 ? "block" : "hidden"
         } duration-700 ease-in-out flex w-100 container mx-auto px-4 items-center`}
         data-carousel-item
       >
@@ -65,8 +66,9 @@ function Carousel() {
       </div>
 
       <div
+        key="slide2"
         className={`${
-          activeSlide === 1 ? "block" : "hidden"
+          activeSlide === 0 ? "block" : "hidden"
         } duration-700 ease-in-out flex w-100 container mx-auto px-4 items-center`}
         data-carousel-item
       >
@@ -98,8 +100,9 @@ function Carousel() {
       </div>
 
       <div
+        key="slide3"
         className={`${
-          activeSlide === 2 ? "block" : "hidden"
+          activeSlide === 1 ? "block" : "hidden"
         } duration-700 ease-in-out flex w-100 container mx-auto px-4 items-center`}
         data-carousel-item
       >

@@ -1,13 +1,13 @@
 import React ,{useState, useEffect, useCallback} from "react";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItemToWishlist } from "../../store/wishlist/wishlist-actions";
 import { addItemToCart } from "../../store/cart/cart-actions";
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import './SingleProduct.css'
 
@@ -21,6 +21,9 @@ const SingleProduct = () =>{
     const [isAnimating, setIsAnimating] = useState(false);
 
     const { id } = useParams();
+
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    // console.log(`isLoggedIn single: ${isLoggedIn}`)
     
     const imageUrl = process.env.REACT_APP_IMGE_API_URL
     const fetchUrl = `${process.env.REACT_APP_BASE_API_URL}/products/${id}`
@@ -87,13 +90,19 @@ return (
 
                                 <div className="icon">
                                     <div className="button">
-                                        <button onClick={handleClick}>
-                                            {
-                                            isAnimating ? 
-                                            (<FontAwesomeIcon icon={faHeart} beatFade size="2xl" style={{color: "rgb(59, 59, 61)",}} />):
-                                            (<FontAwesomeIcon icon={faHeart} size="2xl" style={{color: "rgb(59, 59, 61)",}} />)
-                                            }
-                                        </button>
+                                        {
+                                            isLoggedIn ? (<button onClick={handleClick}>
+                                                {
+                                                isAnimating ? 
+                                                (<FontAwesomeIcon icon={faHeart} beatFade size="2xl" style={{color: "rgb(59, 59, 61)",}} />):
+                                                (<FontAwesomeIcon icon={faHeart} size="2xl" style={{color: "rgb(59, 59, 61)",}} />)
+                                                }
+                                            </button>) :(
+                                                <button>
+                                                    <FontAwesomeIcon icon={faLock} size="2xl" />
+                                                </button>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>

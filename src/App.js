@@ -16,7 +16,6 @@ import MyOrders from "./pages/MyOrders/MyOrders";
 import WishList from "./pages/WishList/WishList";
 
 function App() {
-
   return (
     <>
       <ToastContainer />
