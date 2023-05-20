@@ -30,9 +30,9 @@ function ProductData(props) {
   return (
     <div className="card">
       <img className="product--image" src={imageUrl + props.image} alt="product image" />
-      <h2>{props.name}</h2>
+      <h2 style={{maxHeight:'30px' , overflow:'hidden'}} >{props.name}</h2>
       <p className="price--data"> Price:  ${parseFloat(props.price)}</p>
-      <p style={{color:'#333' ,maxHeight:'120px' , overflow:'hidden'}}>{props.description}</p>
+      <p style={{color:'#333' ,maxHeight:'100px' , overflow:'hidden'}}>{props.description}</p>
       <p style={{fontWeight:'bold'}}>...</p>
       <Link className="link--link" to={`/product/${props.id}`}>
         Details
