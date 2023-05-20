@@ -25,14 +25,22 @@
 }
 
 .img-holder{
-    width: 100%;
     padding: 0 1rem ;
+    width: 650px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .box .images .img-holder img {
     width: 100%;
     display: block;
     border-radius: 30px;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
 }
 
 .box .basic-info {
