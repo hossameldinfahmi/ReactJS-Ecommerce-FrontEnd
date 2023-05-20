@@ -14,16 +14,15 @@ import { fetchCartItems } from "../../store/cart/cart-actions";
 import { useDispatch } from "react-redux";
 
 const Home = () => {
-
   let accessToken = localStorage.getItem("token");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(accessToken){
-    dispatch(fetchUserData());
-    dispatch(fetchCartItems());
+    if (accessToken) {
+      dispatch(fetchUserData());
+      dispatch(fetchCartItems());
     }
-  }, [dispatch,accessToken]);
+  }, [dispatch, accessToken]);
 
   return (
     <Fragment>
