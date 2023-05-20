@@ -39,8 +39,10 @@ const RegistrationForm = () => {
 
     if (!values.password) {
       errors.password = "Required";
-    } else if (values.password.length < 8) {
+    } else if (values.password.length < 8 && values.password.length > 16) {
       errors.password = "Password must be at least 8 characters long";
+    } else if (!/[a-zA-Z]/.test(values.password)) {
+      errors.password = "Password must contain at least one letter";
     }
 
     if (!values.image) {
@@ -291,7 +293,7 @@ const RegistrationForm = () => {
             <button
               type="submit"
               className="bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              disabled={isSubmitting || !isValid}
+              // disabled={isSubmitting || !isValid}
             >
               Submit
             </button>

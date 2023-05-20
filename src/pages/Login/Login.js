@@ -1,21 +1,30 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice/login";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
- 
   const initialValues = {
     email: "",
     password: "",
   };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters long")
+      .max(16, "Password must not exceed 16 characters")
+      .matches(/[a-zA-Z]/, "Password must contain at least one letter"),
+  });
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
@@ -31,7 +40,7 @@ const LoginForm = () => {
       }
 
       localStorage.setItem("token", response.data.tokens.access);
-      toast.success("Login Succsefully", {
+      toast.success("Login Successfully", {
         position: toast.POSITION.TOP_RIGHT,
       });
       navigate("/");
@@ -44,7 +53,11 @@ const LoginForm = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
       {({ isSubmitting }) => (
         <Form>
           <div className="flex flex-col items-center justify-center py-8">
@@ -67,6 +80,11 @@ const LoginForm = () => {
                     id="email"
                     placeholder="Email"
                   />
+                  <ErrorMessage
+                    className="text-red-500 text-xs italic"
+                    name="email"
+                    component="p"
+                  />
                 </div>
                 <div className="mb-6">
                   <label
@@ -75,12 +93,18 @@ const LoginForm = () => {
                   >
                     Password
                   </label>
+
                   <Field
                     className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="password"
                     name="password"
                     id="password"
                     placeholder="Password"
+                  />
+                  <ErrorMessage
+                    className="text-red-500 text-xs italic"
+                    name="password"
+                    component="p"
                   />
                 </div>
                 <button
