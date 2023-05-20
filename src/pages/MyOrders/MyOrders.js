@@ -14,11 +14,10 @@ function MyOrders() {
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
-    }
-    else {
+    } else {
       dispatch(myorder());
     }
-  }, [dispatch, isLoggedIn, navigate])
+  }, [dispatch, isLoggedIn, navigate]);
 
   return (
     <>
@@ -28,41 +27,39 @@ function MyOrders() {
       {!orders.length && <EmptyList list="Order" />}
 
       {orders.length &&
-        orders.map(order =>
+        orders.map((order) => (
           <div className="order">
             <div class="rounded-lg shadow-md p-4 mx-16x mt-24 mx-16 bg-gray-100">
               <div class="flex  mb-4">
                 <h2 class="text-gray-600 font-semibold pr-2">Status:</h2>
-                <p class="text-green-500 font-semibold">{order.status}</p>
+                <p class="text-green-500 mt-5 font-semibold">{order.status}</p>
               </div>
               <div class="flex  mb-4">
                 <h2 class="text-gray-600 font-semibold pr-2">Date:</h2>
-                <p class="text-gray-700">{order.date_ordered}</p>
+                <p class="text-gray-700 mt-5 ">{order.date_ordered}</p>
               </div>
               <div class="flex">
                 <h2 class="text-gray-600 font-semibold pr-2">Total price:</h2>
-                <p class="text-gray-700 font-semibold">{order.total_price}</p>
+                <p class="text-gray-700 mt-5  font-semibold">
+                  {order.total_price}
+                </p>
               </div>
             </div>
             <div className="flex ">
-              {order.items.map(item =>
+              {order.items.map((item) => (
                 <ProductCard
                   key={order.id}
-                  item={
-                    {
-                      quantity: item.quantity,
-                      price: item.price,
-                      name:item.product.name,
-                      image:item.product.image
-                    }
-                  }
+                  item={{
+                    quantity: item.quantity,
+                    price: item.price,
+                    name: item.product.name,
+                    image: item.product.image,
+                  }}
                 />
-              )}
+              ))}
             </div>
           </div>
-        )
-      }
-
+        ))}
     </>
   );
 }
