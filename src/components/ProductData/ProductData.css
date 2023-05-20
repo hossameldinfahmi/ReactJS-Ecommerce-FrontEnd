@@ -17,6 +17,7 @@
     transition: transform 0.2s ease-in-out;
   }
   
+  
   .card:hover {
     transform: translateY(-5px);
   }
@@ -33,6 +34,9 @@
     color: green;
     margin: 1rem 0;
     position: relative;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 2px 5px !important;
   }
   
 
@@ -57,3 +61,25 @@
   .card button:hover {
     background-color: #2d3748;
   }
+  .adding {
+    background-color: #4caf50;
+    cursor: not-allowed;
+  }
+  
+  .confirmation {
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 16px;
+    color: #4caf50;
+    animation: confirmation 1s;
+  }
+  .link--link:hover {
+    text-decoration: underline;
+  }
+  .link--link{
+    text-decoration: underline;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  
