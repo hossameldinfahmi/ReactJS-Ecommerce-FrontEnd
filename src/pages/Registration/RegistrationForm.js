@@ -39,7 +39,7 @@ const RegistrationForm = () => {
 
     if (!values.password) {
       errors.password = "Required";
-    } else if (values.password.length < 8 && values.password.length > 16) {
+    } else if (values.password.length < 8 || values.password.length > 16) {
       errors.password = "Password must be at least 8 characters long";
     } else if (!/[a-zA-Z]/.test(values.password)) {
       errors.password = "Password must contain at least one letter";
