@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import { wishlistActions } from "../../store/wishlist/wishlist-slice";
-import EmptyList from "../../components/EmptyList/EmptyList";
 
 function WishList() {
   console.log("Rendering WishList...");
