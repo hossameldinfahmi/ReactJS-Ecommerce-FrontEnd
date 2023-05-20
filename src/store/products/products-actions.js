@@ -23,7 +23,7 @@ export const fetchProducts = (url) => {
           items: productsData.results || [],
           isLoading: false,
           next: productsData.next,
-          previous: productsData.previous
+          previous: productsData.previous,
         })
       );
     } catch (error) {
@@ -32,11 +32,12 @@ export const fetchProducts = (url) => {
   };
 };
 
-
 export const fetchCategories = () => {
   return async (dispatch) => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/categories/`);
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_API_URL}/categories/`
+      );
 
       if (!response.ok) {
         throw new Error("Could not fetch categories from DB");

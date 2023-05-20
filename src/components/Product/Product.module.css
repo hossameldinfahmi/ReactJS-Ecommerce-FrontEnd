@@ -71,6 +71,7 @@
   text-transform: capitalize;
   color: rgb(2, 43, 90);
   font-family: sans-serif;
+  margin: 0;
 }
 
 .namePrice span {

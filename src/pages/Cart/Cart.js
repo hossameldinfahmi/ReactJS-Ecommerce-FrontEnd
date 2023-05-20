@@ -27,14 +27,14 @@ const Cart = () => {
     <Fragment>
       {!cartItems.length && <EmptyList list="Cart" />}
       {cartItems.length && (
-        <div className=" container mx-auto py-16 lg:pb-28 lg:pt-20 ">
+        <div className=" container mx-auto py-16 lg:pb-28 lg:pt-20  ">
           <div class="mb-5 sm:mb-15 ">
             <h2 class="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">
               Shopping Cart
             </h2>
           </div>
           <div className="flex flex-col md:flex-row justify-between">
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-2/3">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
@@ -63,7 +63,7 @@ const Cart = () => {
                 </tbody>
               </table>
             </div>
-            <div className="w-full mt-8 md:mt-0">
+            <div className="w-1/3 items-end mt-8 md:mt-0">
               <CheckOut orderTotal={orderTotal} />
             </div>
           </div>

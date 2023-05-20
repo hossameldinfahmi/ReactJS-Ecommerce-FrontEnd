@@ -9,7 +9,7 @@ function CheckOut(props) {
   }
 
   return (
-    <div className=" container m-10 xs:w-full" style={{ width: "40%" }}>
+    <div className=" container m-10 xs:w-full">
       <h1 className="font-bold pb-3">Order Summary</h1>
       <div class="flex  justify-between  pt-4 pb-4 -pr-4 border-b-2 border-gray-300 ">
         <span class="inline-block text-slate-400 mr-4">Subtotal</span>

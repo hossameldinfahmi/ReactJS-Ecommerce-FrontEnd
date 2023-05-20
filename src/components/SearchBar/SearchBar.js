@@ -21,7 +21,9 @@ function SearchBar() {
       setTypingTimeout(
         setTimeout(() => {
           axios
-            .get(`http://localhost:8000/products?search=${value}`)
+            .get(
+              `${process.env.REACT_APP_BASE_API_URL}/products?search=${value}`
+            )
             .then((response) => {
               setProducts(response.data.results);
             })
