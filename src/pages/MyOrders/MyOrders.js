@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { myorder } from "../../store/orders/order-actions";
+import EmptyList from "../../components/EmptyList/EmptyList";
 
 function MyOrders() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -24,7 +25,9 @@ function MyOrders() {
       <h1 class="mb-4  ml-16 mt-32 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
         My Orders
       </h1>
-      {
+      {!orders.length && <EmptyList list="Order" />}
+
+      {orders.length &&
         orders.map(order =>
           <div className="order">
             <div class="rounded-lg shadow-md p-4 mx-16x mt-24 mx-16 bg-gray-100">

@@ -12,7 +12,6 @@ const Cart = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   let orderTotal = 0;
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,7 +20,7 @@ const Cart = () => {
     } else {
       dispatch(fetchCartItems());
     }
-  }, [dispatch, isLoggedIn, cartItems, navigate]);
+  }, [dispatch, isLoggedIn, navigate]);
 
   return (
     <Fragment>
