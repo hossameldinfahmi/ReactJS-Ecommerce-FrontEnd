@@ -11,29 +11,37 @@ function ProductData(props) {
   const productId = {id:props.id};
 
   const [isAddLoad , setIsAddLoad] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
   const dispatch = useDispatch();
 
-// console.log(productId);
   const addToCart = () => {
-    setIsAddLoad(true)
-    dispatch(addItemToCart(productId)).then(()=> {setIsAddLoad(false)})
+    setIsAddLoad(true);
+    dispatch(addItemToCart(productId))
+      .then(() => {
+        setIsAddLoad(false);
+        setIsAdded(true);
+        setTimeout(() => {
+          setIsAdded(false);
+        }, 2000);
+      });
   }
 
   return (
     <div className="card">
       <img className="product--image" src={imageUrl + props.image} alt="product image" />
       <h2>{props.name}</h2>
-      <p className="price--data"> price: ${parseFloat(props.price)}</p>
-      <p>{props.description}</p>
+      <p className="price--data"> Price:  ${parseFloat(props.price)}</p>
+      <p style={{color:'#333' ,}}>{props.description}</p>
       <p style={{fontWeight:'bold'}}>...</p>
-      <Link to={`/product/${props.id}`}>
+      <Link className="link--link" to={`/product/${props.id}`}>
         Details
       </Link>
       <p>
         <button onClick={addToCart} className={isAddLoad ? 'adding' : ''}>
-          {isAddLoad ? 'Adding...' : 'Add to Cart          '}
+          {isAddLoad ? 'Adding...' : 'Add to Cart'}
         </button>
+        {isAdded && <span className="confirmation">Added to cart!</span>}
       </p>
     </div>
   );
