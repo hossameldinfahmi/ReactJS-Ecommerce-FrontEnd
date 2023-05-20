@@ -118,22 +118,22 @@ function UserProfile() {
         <Tabs id="custom-animation" value="html">
           <TabsHeader>
             <Tab
-              className="bg-gray-900 text-white py-2 mx-2 px-4 rounded-l-md rounded-full"
-              selectedClassName="bg-green-600"
+              className="bg-gray-900 text-gray-300 py-2 mx-2 px-4 rounded-l-md rounded-full"
+              selectedClassName="bg-green-600 !important"
               value="Password"
             >
               Change Password
             </Tab>
             <Tab
-              className="bg-gray-900 text-white mx-2 py-2 px-4 rounded-full"
+              className="bg-gray-900 text-gray-300 mx-2 py-2 px-4 rounded-full"
               selectedClassName="bg-green-600"
               value="Email"
             >
               Change Email
             </Tab>
             <Tab
-              className="bg-gray-900 text-white mx-2 py-2 px-4 rounded-r-md rounded-full"
-              selectedClassName="bg-gray-700"
+              className="bg-gray-900 text-gray-300 mx-2 py-2 px-4 rounded-r-md rounded-full"
+              selectedClassName="bg-green-600 !important"
               value="Address"
             >
               Change Address
