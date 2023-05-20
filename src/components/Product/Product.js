@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import classes from "./Product.module.css";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Product = ({
