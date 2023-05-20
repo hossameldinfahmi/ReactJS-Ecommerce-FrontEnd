@@ -63,6 +63,11 @@ const Products = () => {
         dispatch(fetchProducts(productsCateory))
     }
 
+    const ALL = () => {
+        dispatch(productActions.replaceProducts({ isLoading: true }))
+        dispatch(fetchProducts(allProducts))
+    }
+
     return (
         <Fragment>
 
@@ -85,6 +90,7 @@ const Products = () => {
                 </div> */}
 
                 <ul class="flex flex-wrap text-sm font-medium text-center justify-center text-gray-700 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                <Link onClick={ALL} className="inline-block p-4 text-blue-600   rounded-t-lg active dark:text-blue-500 " aria-current="page" >ِِALL</Link>
                 {categories.map((category) => {
                             return (
                                 <li class="mr-2">
