@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import classes from "./Product.module.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Product = ({
   id,
@@ -19,14 +21,20 @@ const Product = ({
   image,
 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
-
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const imageUrl = process.env.REACT_APP_IMGE_API_URL;
   const product = { id };
 
   const addToCart = () => {
-    dispatch(addItemToCart(product));
+    if (!isLoggedIn) {
+      navigate("/login");
+    } else{
+      dispatch(addItemToCart(product));
+    }
   };
 
   const handleClick = () => {

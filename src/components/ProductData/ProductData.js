@@ -3,19 +3,25 @@ import { addItemToCart } from '../../store/cart/cart-actions';
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import './ProductData.css';
 
 function ProductData(props) {
   const imageUrl = process.env.REACT_APP_IMGE_API_URL;
   const productId = {id:props.id};
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const [isAddLoad , setIsAddLoad] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const addToCart = () => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    } else {
     setIsAddLoad(true);
     dispatch(addItemToCart(productId))
       .then(() => {
@@ -25,6 +31,7 @@ function ProductData(props) {
           setIsAdded(false);
         }, 2000);
       });
+    }
   }
 
   return (
